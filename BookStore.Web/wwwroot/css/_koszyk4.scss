@@ -1,0 +1,12 @@
+
+.bill{
+    position: absolute;
+    top: 55px;
+    right: 0px;
+    width: 300px;
+    @include secondaryText;
+    text-align: center;
+}
+.mastercard-img{
+    width: 300px;
+}

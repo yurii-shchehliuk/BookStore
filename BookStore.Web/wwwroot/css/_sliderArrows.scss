@@ -1,0 +1,42 @@
+.slider{
+    &-btn{
+        color:  $btnColors;
+        position: absolute;
+        top: 40%;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        z-index: 3;
+        font-size: 50px;
+        transition: all 1s;
+        &:hover{
+            transform: scale(1.2);
+          
+            
+        }
+       
+    }
+    &-next{
+        right: -80px;
+    }
+    &-prev{
+        left: -80px;
+    }
+    &-next2{
+        right: -20px;
+    }
+    &-prev2{
+        left:  -20px;
+    }
+}
+
+.slick-slide:focus {
+    outline: none;
+}
+
+.slider__left a:focus{
+    outline: none;
+}
+.second-slider__link:focus{
+    outline: none;
+}

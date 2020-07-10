@@ -1,0 +1,103 @@
+// ITALIC INPUT //
+@mixin placeholder__font {
+   input::-webkit-input-placeholder {
+        font-style: italic;
+     }
+     input::-moz-placeholder {
+        font-style: italic;  
+     }
+    
+}
+
+
+
+// STYLE FOR ALL BUTTONS//
+@mixin mainBtn() {
+   button{
+      display: block;
+      background-color: $btnColors;
+      font-size: $mainFont;
+      border-radius: $borderRadius;
+      font-size: $btnFont;
+      border:none;
+      color: $colorBtn; 
+      transition: transform .7s, color .5s;
+         &:hover{
+            color: black;
+            transform: scale(1.1);
+         }
+         &:focus{
+            outline: none;
+         }
+   }
+}
+
+// STYLE FOR ALL H1 TEG//
+@mixin h1( $font-weight: bold, $textTransform: uppercase,  $font-style: normal) {
+   h1{
+   font-size: $h1;
+   font-weight: $font-weight;
+   text-align: center;
+   text-transform: $textTransform;
+   font-style: $font-style ;
+   }  
+}
+
+// MIXIN FOR ADDING BACKGROUNDS//
+@mixin mSection($name){
+      
+      background:  url("../img/#{$name}.svg");
+      height: 75vh;
+      background-repeat: no-repeat;
+   
+}
+
+// STYLE FOR TRANSITION FOOTER`S ICONS //
+@mixin transitionIcons {
+   transition-property: color, border-radius, background-color;
+   transition-duration: .7s;
+   transition-delay: .1s;
+   transition-timing-function: ease;
+}
+
+// FOR ADDING BG COLOR TO FOOTER`S  ICONS //
+@mixin iconsBack($bg) {
+   color: #fff;
+   width: 60px;
+   margin: 0 auto;
+   border-radius: 10px;
+   background-color: $bg;
+   
+}
+
+
+@mixin secondaryText {
+      font-family: $font;
+      font-size: $btnFont;
+      font-style: italic;
+      color: #707070;
+}
+
+@mixin subTitle($margin: 0 0 25px, $text-transform: uppercase, $font-weight:500, $font-size:2rem, $text-alighn: center, $font-style:normal) {
+   .sub-title{
+      
+      margin: $margin;
+      text-transform: $text-transform;
+      font-size: $font-size;
+      font-weight: $font-weight;
+      text-align: $text-alighn;
+      font-style: $font-style;
+  }
+}
+@mixin subTitle2($margin: 0 0 25px, $text-transform: uppercase, $font-weight:500, $font-size:2rem, $text-alighn: center, $font-style:normal) {
+   
+      
+      margin: $margin;
+      text-transform: $text-transform;
+      font-size: $font-size;
+      font-weight: $font-weight;
+      text-align: $text-alighn;
+      font-style: $font-style;
+  
+}
+

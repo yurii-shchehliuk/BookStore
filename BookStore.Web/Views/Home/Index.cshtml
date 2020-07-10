@@ -1,0 +1,142 @@
+﻿
+@*@model IEnumerable<Application.ViewModels.HomeVM.HomeIndexVM>*@
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<section class="first-section">
+    <div class="slider container">
+        <h1 class="col-md-8 title">Najlepsze za tydzień!</h1>
+        <div class="slider__box">
+
+            @for (int i = 0; i <@*Model.FirstSlider.Count*@ 3; i++)
+{
+<div class="slider__content row d-flex">
+    <div class="slider__left col-md-3">
+        <a href="#">
+            <img class="slider__left__img" src="~/img/book2.svg">
+        </a>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="slider__right col-md-8">
+        <h4 class="">Autor: <strong>Nazwa</strong></h4>
+        <p class="slider__right-text pText">
+            Jakiś tam opis. Jakaś tam promocja. Przykładowa książka.
+            Nasze promocje są najlepsze. I td. The first 34 issues include
+            some classic skull and grave covers, witches, the undead and
+            other horror comic mainstays of the era.
+            These seldom turn up in better condition than VG. The
+            comics with black covers are especially tough to find in
+            nice shape.
+        </p>
+        <form action="#" class="">
+            <button class="slider__button-cart mainBtn ">Do koszyka <i class="fas fa-cart-arrow-down"></i></button>
+        </form>
+    </div>
+</div>
+}
+        </div>
+    </div>
+</section>
+
+<section class="second-section">
+    <div class="second-wrapper ">
+        <h1 class="title" id="nowosciScroll">NOWOŚCI!</h1>
+        <h2 class="sub-title"> WYBIERZ COŚ DLA SIEBIE </h2>
+        <div class="second-slider">
+            @for (int i = 0; i < 8; i++)
+            {
+                <div class="second-slider__box">
+                    <div class="second-slider__content">
+                        <a href="#" class="second-slider__link"><img class="second-slider__img" src="~/img/slider2/book3.svg" alt="boock"> </a>
+                        <h4 class="">Autor: <strong>Nazwa</strong></h4>
+                        <form action="#" class="">
+                            <button class=" mainBtn ">Do koszyka  <i class="fas fa-cart-arrow-down"></i></button>
+                        </form>
+                    </div>
+                </div>
+            }
+            
+
+
+        </div>
+    </div>
+</section>
+
+<section class="third-section">
+    <div class="container">
+        <h1 class="title"> OD PIERWSZEJ OSOBY!</h1>
+        <h2 class="sub-title">J.K. Rowling o nowej części Harry Pottera</h2>
+        <div class="third-content row">
+            <figure class="content-left col-md-3">
+                <img class="content__img" src="~/img/Rowling.svg" alt="Rowling">
+                <figcaption class="img__caption"><em> J.K. Rowling</em> </figcaption>
+            </figure>
+            <div class="col-md-1"></div>
+            <div class="content-right col-md-8">
+                <p class="content__text pText">
+                    Swoego pierwszego męża, młodszego o trzy lata studenta dziennikarstwa,
+                    Jorge Arentesa, poznała w Portugalii, gdzie pracowała jako nauczycielka
+                    angielskiego. Poznali się barze, okazało się, że oboje są miłośnikami Jane
+                    Austin. Po kilku dniach zaczęli się spotykać. Pobrali się w październiku
+                    1992 roku. Niestety, małżeństwo trwało tylko 13 miesięcy i jeden dzień.
+                    Została po nim córka, Jessica. O tym i o czymś więcej dowiedż się z
+                    naszego wywiadu z legendarną anglijką!
+                </p>
+                <form action="#" class="">
+                    <button class=" mainBtn ">Czytaj więcej! >> </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="second-section ">
+    <div class="second-wrapper ">
+        <h1 class="title">NOWOŚCI!</h1>
+        <h2 class="sub-title"> WYBIERZ COŚ DLA SIEBIE </h2>
+        <div class="second-slider">
+            @for (int i = 0; i < 8; i++)
+            {
+                <div class="second-slider__box">
+                    <div class="second-slider__content">
+                        <a href="#" class="second-slider__link"><img class="second-slider__img" src="img/slider2/book3.svg" alt="boock"> </a>
+                        <h4 class="">Autor: <strong>Nazwa</strong></h4>
+                        <form action="#" class="">
+                            <button class="mainBtn">Do koszyka <i class="fas fa-cart-arrow-down"></i></button>
+                        </form>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+</section>
+
+<section class="third-section five">
+    <div class="container ">
+        <h1 class="title">Twoja opinia się liczy!</h1>
+        <div class="third-content five-content row">
+            <div class="content-left col-md-6">
+                <img class="content__img " src="~/img/opinie.svg" alt="Rowling">
+            </div>
+
+            <div class="content-right  col-md-5">
+                <p class="content__text pText">
+                    Przeczytałeś książkę, ale nie masz kolegi,
+                    z którym mógłbyś pogadać? Mamy dla
+                    ciebie wyjście: poznaj nasz forum dyskusyjny.
+                    Zawsze znajdziesz kogoś do dialogu.
+                </p>
+
+            </div>
+            <form action="#" class="col-md-8 m-auto">
+                <button class="mainBtn">Przejdż do dyskusji</button>
+            </form>
+        </div>
+
+    </div>
+</section>

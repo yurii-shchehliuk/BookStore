@@ -1,0 +1,81 @@
+﻿@model Application.ViewModels.AccountVM.LoginViewModel
+@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link href="~/css/style.css" rel="stylesheet" />
+    <title>Document</title>
+</head>
+<body>
+    <img class="wave" src="~/img/wave2.png" />
+    <div class="container">
+        <div class="img">
+            <img src="~/img/undraw_Bibliophile_hwqc.svg" />
+        </div>
+        <section id="loginForm">
+
+            <div class="login-content">
+
+                <form asp-controller="Account" asp-action="Login" style="margin: 10%" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <img src="~/img/avatar.svg">
+                    <h2 class="title">Welcome</h2>
+                    <div>
+                        <div class="input-div one">
+                            <div class="i">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Username</h5>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "input" })
+                            </div>
+
+                        </div>
+                        @Html.ValidationMessage("Email", "", new { @class = "text-danger validation-summary-errors" })
+                    </div>
+                    <div>
+                        <div class="input-div pass">
+                            <div class="i">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Password</h5>
+                                @Html.PasswordFor(m => m.Password, new { @class = "input" })
+                            </div>
+                        </div>
+                        @Html.ValidationMessage("Password", "", new { @class = "text-danger validation-summary-errors" })
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            @*@Html.ValidationSummary("", new { @class = "text-danger validation-summary-errors" })*@
+
+                            <input type="submit" class="btn" value="Login">
+                            @Html.ActionLink("Register", "Register", "Account", new { @class = "btn noHover", style = "text-align:center; padding:10px;" })
+                        </div>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                    </p>
+                </form>
+
+
+            </div>
+        </section>
+        <div class="col-md-4">
+            <section id="socialLoginForm">
+            </section>
+        </div>
+    </div>
+
+    <script src="~/js/login.js"></script>
+</body>
+</html>

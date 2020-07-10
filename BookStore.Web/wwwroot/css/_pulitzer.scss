@@ -1,0 +1,88 @@
+.ranking-wrapper{
+    min-height: 1860px;
+    .ranking{
+        &__header{
+            text-align: center;
+            color: #000000;
+            font-size: 40px;
+            font-weight: 700;
+            span{
+                margin-top: 40px;
+                color: #000000;
+                font-size: 30px;
+                font-weight: 700;
+            }
+        }
+        &__gold{
+            margin-top: 44px;
+            padding: 24px 44px 41px 95px;
+            height: 490px;
+            background-color: #ffe88b;
+            &:nth-child(3) {
+                background-color: #dfdfdf;
+            }
+            &:nth-child(4) {
+                background-color: #ffc48f;
+            }
+            &_image{
+                margin-top: 19px;
+            }
+            &_info{
+                &_header{
+                    text-align: center;
+                    color: #000000;
+                    font-size: 30px;
+                    font-weight: 700;
+                    font-style: italic;
+                }
+                &_description{
+                    margin-top: 50px;
+                    color: #000000;
+                    font-size: 23px;
+                    font-weight: 400;
+                    font-style: italic;
+                }
+                &_buttons{
+                    margin-top: 53px;
+                    .first{
+                        background-color: #ff7d13;
+                        border-radius: 19px;
+                        border: 2px solid #fbfbfb;
+                    }
+                    .second{
+                        border-radius: 19px;
+                        border: 2px solid #fbfbfb;
+                    }
+                }
+            }
+            &_price{
+                text-align: center;
+                &-availability{
+                    margin-top: 185px;
+                    color: #707070;
+                    font-size: 15px;
+                    font-weight: 700;
+                }
+                &-value{
+                    margin-top: 10px;
+                    color: #000000;
+                    font-size: 30px;
+                    text-align: center;
+                    font-weight: 700;
+                }
+            }
+        } 
+        &__link{
+            text-align: center;
+            margin-top: 32px;
+            a{
+                text-decoration: none;
+                color: #707070;
+                transition: all .7s;
+                &:hover{
+                    color: $colorHover;
+                }
+            }
+        } 
+    }
+}

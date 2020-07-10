@@ -1,0 +1,99 @@
+﻿
+@model Application.ViewModels.AccountVM.RegisterViewModel
+@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link href="~/css/style.css" rel="stylesheet" />
+    <title>Document</title>
+</head>
+<body>
+    <img class="wave" src="~/img/wave2.png">
+    <div class="container">
+        <div class="img">
+            <img src="~/img/undraw_book_lover_mkck.svg" />
+        </div>
+        <div class="login-content">
+            <form id="reg__form" method="post">
+                <img src="~/img/avatar.svg">
+                <h2 class="title">Waiting for you</h2>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Username</h5>
+
+                        @*<input type="text" class="input" id="username">*@
+                        @Html.TextBoxFor(m => m.UserName, htmlAttributes: new { @class = "input", id = "username" })
+                        @*<input asp-for="Email" class="form-control" />*@
+
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small class="reg__error">Error message</small>
+                    </div>
+
+                </div>
+                    @Html.ValidationMessage("UserName", "", new { @class = "text-danger validation-summary-errors" })
+
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Mail</h5>
+                        @*<input type="email" class="input" id="email">*@
+                        @Html.TextBoxFor(m => m.Email, new { @class = "input", id = "email" })
+
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small class="reg__error">Error message</small>
+                    </div>
+
+                </div>
+                    @Html.ValidationMessage("Email", "", new { @class = "text-danger validation-summary-errors" })
+
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Password</h5>
+                        @*<input type="password" class="input" id="password">*@
+                        @Html.TextBoxFor(m => m.Password, new { @class = "input", id = "password" })
+
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small class="reg__error">Error message</small>
+                    </div>
+
+                </div>
+                    @Html.ValidationMessage("Password", "", new { @class = "text-danger validation-summary-errors" })
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Password check</h5>
+                        @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "input", id = "password2" })
+
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small class="reg__error">Error message</small>
+                    </div>
+
+                </div>
+                    @Html.ValidationMessage("ConfirmPassword", "", new { @class = "text-danger validation-summary-errors" })
+                <input onclick="checkInputs()" type="submit" class="btn" value="Submit">
+            </form>
+        </div>
+    </div>
+    <script src="~/js/login.js"></script>
+</body>
+</html>

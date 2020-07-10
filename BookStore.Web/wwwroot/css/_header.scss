@@ -1,0 +1,112 @@
+@import "mixin";
+@import "values";
+header{
+    width: 90%;
+    margin: 0 auto;
+        .header__logo{
+           margin-top: 8px;
+           padding: 0 30px;
+                .header__logo__img{
+                    height: 53px;
+                }
+        }
+        .header__search{
+            height: 53px;
+            .active-pink-4 input[type=text]:focus:not([readonly]) {
+                border: 1px solid $mainColor;
+                box-shadow: 0 0 0 1px $mainColor;
+            }
+            
+            .active-pink-3 input[type=text] {
+                border: 1px solid $mainColor;
+                box-shadow: 0 0 0 1px $mainColor;
+            }
+                .header__form{
+                    margin: 15px 8px;
+                    position: relative;
+                    
+                    .header__search__input{
+                        transition: transform .7s;
+                        border-radius: $borderRadius;
+                        &:focus{
+                            transform: scale(1.1);
+                        }
+                  }
+                     @include placeholder__font;
+                  
+                    .header__form__button{
+                        position: absolute;
+                        top: -2px;
+                        right: 10px;
+                        border: none;
+                        background: none;
+
+                    }
+            }
+        }
+        .header__btn{
+                margin-top: 8px;
+                height: 53px;
+                display: flex;
+                justify-content: space-around;
+                   
+                        
+
+                            .header__form-right__btn{
+                                padding: 10px 30px;
+                                border: none;
+                            }
+                            
+                            
+                            .header__form-cart{
+                                border: none;
+                                background: none;
+                                position: relative;
+                                    .header__form-cart-increment{
+                                        position: absolute;
+                                        top: 7px;
+                                        right: 7px;
+                                        font-size: 10px;
+                                        border-radius: 20px;
+                                        border: 1px solid black;
+                                        height: 15px;
+                                        width: 15px;
+                                            p{
+                                                text-align: center;
+                                            }
+                                    }
+                            }
+                
+                    
+        }
+       
+}
+
+ .header-down{
+            margin: 25px 0px 40px;
+            border-top: 2px solid $mainColor;
+            border-bottom: 2px solid $mainColor;
+            box-shadow: 5px 8px 18px $mainColor;
+            font-size: $mainFont;
+            
+                .header__nav__list{
+                    margin: 15px auto;
+                    display: flex;
+                    justify-content: space-around;
+                    
+                    list-style: none;
+                        a{
+                            color: #4D4D4D;
+                            text-decoration: none;
+                            transition: color .5s;
+                        }
+                        a:hover{
+                            color: orange;
+
+                        }
+                }
+
+        }
+#loupe{
+    transition: transform .7s;
+}

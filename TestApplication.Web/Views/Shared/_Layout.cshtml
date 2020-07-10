@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DELETEIT</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <aside class="aside">
+                <div class="d-flex">
+                    <h4 class="m-3">Dashboard <div class="menu-icon-wrapper"><div class="menu-icon"></div></div></h4>
+                </div>
+                <div id="aside-nav" class="aside__nav">
+                    <nav>
+                        <ul class=" list-group flex-column justify-content-around">
+                            <li class="p-3 nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user-shield"></i> Admin
+                                </a>
+                                <div class="dropdown-menu animate " aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-controller="Authors" asp-action="Index">Author</a>
+                                    <a class="dropdown-item" asp-controller="Books" asp-action="Index"><i class="fas fa-book"></i> Book</a>
+                                    <a class="dropdown-item" asp-controller="BookGanres" asp-action="Index">BookGanres</a>
+                                    <a class="dropdown-item"asp-controller="Ganres" asp-action="Index">Ganre</a>
+                                    <a class="dropdown-item" asp-controller="Orders" asp-action="Index">Order</a>
+                                    <a class="dropdown-item" asp-controller="Users" asp-action="Index"><i class="fas fa-user"></i> User</a>
+                                    <a class="dropdown-item"asp-controller="UserRoles" asp-action="Index"><i class="fas fa-users"></i> UserRoles</a>
+                                </div>
+                            </li>
+                            <li class="p-3 nav-item ">
+                                <a href="#"><i class="fas fa-door-open"></i> Exit </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DELETEIT</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - DELETEIT - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/scrypt.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

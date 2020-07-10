@@ -1,0 +1,13 @@
+.confirm-img{
+    width: 600px;
+    margin: 0 auto;
+    display: block;
+    padding: 30px 0;
+}
+.succses__box{
+    h4{
+        @include secondaryText;
+        text-align: center;
+        font-size: 26px;
+    }
+}

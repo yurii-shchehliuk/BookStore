@@ -1,0 +1,24 @@
+@import "header";
+@import "first";
+@import "second";
+@import "third";
+@import "footer";
+@import "sliderArrows";
+@import "koszyk";
+@import "book_cart";
+@import "authors";
+@import "koszyk1";
+@import "koszyk2";
+@import "koszyk3";
+@import "koszyk4";
+@import "koszyk5";
+@import "pulitzer";
+@import "promocje";
+
+body{
+    font-family: $font;
+}
+
+@include mainBtn;
+@include h1;
+@include subTitle;
