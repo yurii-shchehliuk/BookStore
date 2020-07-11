@@ -1,5 +1,5 @@
 ﻿
-@*@model IEnumerable<Application.ViewModels.HomeVM.HomeIndexVM>*@
+@model Application.ViewModels.HomeVM.HomeIndexVM
 @{
     ViewBag.Title = "Home Page";
 }
@@ -9,33 +9,33 @@
     <div class="slider container">
         <h1 class="col-md-8 title">Najlepsze za tydzień!</h1>
         <div class="slider__box">
+            @foreach (var item in Model.FirstSlider)
 
-            @for (int i = 0; i <@*Model.FirstSlider.Count*@ 3; i++)
-{
-<div class="slider__content row d-flex">
-    <div class="slider__left col-md-3">
-        <a href="#">
-            <img class="slider__left__img" src="~/img/book2.svg">
-        </a>
-    </div>
-    <div class="col-md-1"></div>
-    <div class="slider__right col-md-8">
-        <h4 class="">Autor: <strong>Nazwa</strong></h4>
-        <p class="slider__right-text pText">
-            Jakiś tam opis. Jakaś tam promocja. Przykładowa książka.
-            Nasze promocje są najlepsze. I td. The first 34 issues include
-            some classic skull and grave covers, witches, the undead and
-            other horror comic mainstays of the era.
-            These seldom turn up in better condition than VG. The
-            comics with black covers are especially tough to find in
-            nice shape.
-        </p>
-        <form action="#" class="">
-            <button class="slider__button-cart mainBtn ">Do koszyka <i class="fas fa-cart-arrow-down"></i></button>
-        </form>
-    </div>
-</div>
-}
+            {
+                <div class="slider__content row d-flex">
+                    <div class="slider__left col-md-3">
+                        <a href="#">
+                            <img class="slider__left__img" src="~/img/book2.svg">
+                        </a>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="slider__right col-md-8">
+                        <h4 class="">Autor: <strong>Nazwa</strong></h4>
+                        <p class="slider__right-text pText">
+                            Jakiś tam opis. Jakaś tam promocja. Przykładowa książka.
+                            Nasze promocje są najlepsze. I td. The first 34 issues include
+                            some classic skull and grave covers, witches, the undead and
+                            other horror comic mainstays of the era.
+                            These seldom turn up in better condition than VG. The
+                            comics with black covers are especially tough to find in
+                            nice shape.
+                        </p>
+                        <form action="#" class="">
+                            <button class="slider__button-cart mainBtn ">Do koszyka <i class="fas fa-cart-arrow-down"></i></button>
+                        </form>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </section>
@@ -45,7 +45,7 @@
         <h1 class="title" id="nowosciScroll">NOWOŚCI!</h1>
         <h2 class="sub-title"> WYBIERZ COŚ DLA SIEBIE </h2>
         <div class="second-slider">
-            @for (int i = 0; i < 8; i++)
+            @foreach (var item in Model.FirstSlider)
             {
                 <div class="second-slider__box">
                     <div class="second-slider__content">
@@ -57,7 +57,7 @@
                     </div>
                 </div>
             }
-            
+
 
 
         </div>
@@ -97,7 +97,7 @@
         <h1 class="title">NOWOŚCI!</h1>
         <h2 class="sub-title"> WYBIERZ COŚ DLA SIEBIE </h2>
         <div class="second-slider">
-            @for (int i = 0; i < 8; i++)
+            @foreach (var item in Model.FirstSlider)
             {
                 <div class="second-slider__box">
                     <div class="second-slider__content">

@@ -26,7 +26,7 @@ namespace Domain.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AuthorRef")
+                    b.Property<int>("BookId")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
@@ -37,7 +37,7 @@ namespace Domain.Migrations
 
                     b.HasKey("AuthorId");
 
-                    b.HasIndex("AuthorRef")
+                    b.HasIndex("BookId")
                         .IsUnique();
 
                     b.ToTable("Authors");
@@ -49,9 +49,6 @@ namespace Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BookRef")
-                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -73,25 +70,22 @@ namespace Domain.Migrations
 
                     b.HasKey("BookId");
 
-                    b.HasIndex("BookRef")
-                        .IsUnique();
-
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("Domain.Entities.BookGanre", b =>
+            modelBuilder.Entity("Domain.Entities.BookGenre", b =>
                 {
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
-                    b.Property<int>("GanreId")
+                    b.Property<int>("GenreId")
                         .HasColumnType("int");
 
-                    b.HasKey("BookId", "GanreId");
+                    b.HasKey("BookId", "GenreId");
 
-                    b.HasIndex("GanreId");
+                    b.HasIndex("GenreId");
 
-                    b.ToTable("BookGanres");
+                    b.ToTable("BookGenres");
                 });
 
             modelBuilder.Entity("Domain.Entities.CartItem", b =>
@@ -104,32 +98,41 @@ namespace Domain.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
                     b.Property<float>("Discount")
                         .HasColumnType("real");
 
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ShoppingCartId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("CartItemId");
+
+                    b.HasIndex("BookId")
+                        .IsUnique();
 
                     b.HasIndex("OrderId");
 
                     b.ToTable("CartItems");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Ganre", b =>
+            modelBuilder.Entity("Domain.Entities.Genre", b =>
                 {
-                    b.Property<int>("GanreId")
+                    b.Property<int>("GenreId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("GanreName")
+                    b.Property<string>("GenreName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("GanreId");
+                    b.HasKey("GenreId");
 
-                    b.ToTable("Ganres");
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("Domain.Entities.Order", b =>
@@ -139,14 +142,93 @@ namespace Domain.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AddressLine1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("AddressLine2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("OrderPlaced")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float>("OrderTotal")
+                        .HasColumnType("real");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25);
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.HasKey("OrderId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Domain.Entities.OrderDetail", b =>
+                {
+                    b.Property<int>("OrderDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DrinkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
+                    b.HasKey("OrderDetailId");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -189,12 +271,12 @@ namespace Domain.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserRolesRef")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("UserRolesId");
 
-                    b.HasIndex("UserRolesRef")
+                    b.HasIndex("UserId")
                         .IsUnique();
 
                     b.ToTable("UsersRoles");
@@ -204,21 +286,12 @@ namespace Domain.Migrations
                 {
                     b.HasOne("Domain.Entities.Book", "Book")
                         .WithOne("Author")
-                        .HasForeignKey("Domain.Entities.Author", "AuthorRef")
+                        .HasForeignKey("Domain.Entities.Author", "BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Domain.Entities.Book", b =>
-                {
-                    b.HasOne("Domain.Entities.CartItem", "CartItem")
-                        .WithOne("Book")
-                        .HasForeignKey("Domain.Entities.Book", "BookRef")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Entities.BookGanre", b =>
+            modelBuilder.Entity("Domain.Entities.BookGenre", b =>
                 {
                     b.HasOne("Domain.Entities.Book", "Book")
                         .WithMany("BooksGanres")
@@ -226,17 +299,23 @@ namespace Domain.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Ganre", "Ganre")
-                        .WithMany("BookGanres")
-                        .HasForeignKey("GanreId")
+                    b.HasOne("Domain.Entities.Genre", "Genre")
+                        .WithMany("BookGenres")
+                        .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.CartItem", b =>
                 {
+                    b.HasOne("Domain.Entities.Book", "Book")
+                        .WithOne("CartItem")
+                        .HasForeignKey("Domain.Entities.CartItem", "BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.Order", "Order")
-                        .WithMany("CartItem")
+                        .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -244,9 +323,22 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Domain.Entities.Order", b =>
                 {
-                    b.HasOne("Domain.Entities.User", "User")
+                    b.HasOne("Domain.Entities.User", null)
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.OrderDetail", b =>
+                {
+                    b.HasOne("Domain.Entities.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId");
+
+                    b.HasOne("Domain.Entities.Order", "Order")
+                        .WithMany("OrderLines")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -255,7 +347,7 @@ namespace Domain.Migrations
                 {
                     b.HasOne("Domain.Entities.User", "User")
                         .WithOne("UserRoles")
-                        .HasForeignKey("Domain.Entities.UserRoles", "UserRolesRef")
+                        .HasForeignKey("Domain.Entities.UserRoles", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -14,10 +14,9 @@ namespace Domain.Entities
         public string Description { get; set; }
         public string Image { get; set; }
 
-        public int BookRef { get; set; }
         public virtual Author Author { get; set; }
         public virtual CartItem CartItem { get; set; }
-        public virtual ICollection<BookGanre> BooksGanres { get; set; }
+        public virtual ICollection<BookGenre> BooksGanres { get; set; }
 
     }
 }

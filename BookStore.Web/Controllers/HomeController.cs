@@ -34,6 +34,7 @@ namespace BookStore.Controllers
         
         public IActionResult Privacy()
         {
+
             return View();
         }
 

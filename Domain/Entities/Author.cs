@@ -9,7 +9,7 @@ namespace Domain.Entities
         public int AuthorId { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
-        public int AuthorRef { get; set; }
-        public Book Book { get; set; }
+        public int BookId { get; set; }
+        public virtual Book Book { get; set; }
     }
 }

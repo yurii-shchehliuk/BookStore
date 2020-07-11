@@ -4,3 +4,7 @@
 /TestApplication.Web/bin
 /Infrastructure/bin
 /Infrastructure/obj
+/Application/obj
+/Application/bin
+/Domain/bin
+/Domain/obj

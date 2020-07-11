@@ -8,7 +8,7 @@ namespace Domain.Entities
     {
         public int UserRolesId { get; set; }
         public string Name { get; set; }
-        public int UserRolesRef { get; set; }
+        public int UserId { get; set; }
         public virtual User User { get; set; }
 
     }

@@ -38,17 +38,20 @@
 
                 <div class="header__btn col-md-2">
                     @*<form class="header__form-login" action="login.html" target="_blank">
-                        <button class="header__form-right__btn mainBtn">
-                            <partial name="_LoginPartial" />
-                        </button>
+                            <button class="header__form-right__btn mainBtn">
+                                <partial name="_LoginPartial" />
+                            </button>
 
-                    </form>*@
-                    <form mthod="get" class="header__form-login" action="@Url.Action("Login", "Account",null)" target="_blank">
+                        </form>*@
+                    <form method="get" class="header__form-login" asp-controller="Account" asp-action="Login" target="_blank">
                         <button class="header__form-right__btn mainBtn">LogIn</button>
                     </form>
-                    <form class="header__form-cart" asp-action="Cart" target="_blank">
+                    <form class="header__form-cart" asp-controller="ShoppingCart" asp-action="Index" target="_blank">
                         <button class="header__form-cart">
-                            <img src="~/img/koszyk2.svg" alt="cart">
+                            <div>
+                                <img src="~/img/koszyk2.svg" alt="cart">
+                                @await Component.InvokeAsync("ShoppingCartSummary")
+                            </div>
                         </button>
                         <div class="header__form-cart-increment">
                             <p>1</p>
@@ -69,7 +72,8 @@
                 <li class="header__nav__list__item"><a asp-controller="Home" asp-action="Promotions">Promocje</a></li>
                 <li class="header__nav__list__item"><a asp-controller="Authors" asp-action="Index">Autory</a></li>
                 <li class="header__nav__list__item"><a href="Rating">Ranking</a></li>
-                <li class="header__nav__list__item"><a href="#">Obserwuj nas</a></li>
+                @await Component.InvokeAsync("GenresMenu")
+                
             </ul>
         </nav>
     </div>
