@@ -16,7 +16,9 @@
     <img class="wave" src="~/img/wave2.png" />
     <div class="container">
         <div class="img">
-            <img src="~/img/undraw_Bibliophile_hwqc.svg" />
+            <a asp-action="Index" asp-controller="Home">
+                <img src="~/img/undraw_Bibliophile_hwqc.svg" />
+            </a>
         </div>
         <section id="loginForm">
 
@@ -28,17 +30,17 @@
                     <img src="~/img/avatar.svg">
                     <h2 class="title">Welcome</h2>
                     <div>
+                        <input type="hidden" asp-for="ReturnUrl" />
                         <div class="input-div one">
                             <div class="i">
                                 <i class="fas fa-user"></i>
                             </div>
                             <div class="div">
-                                <h5>Username</h5>
-                                @Html.TextBoxFor(m => m.Email, new { @class = "input" })
+                                <h5>Email</h5>
+                                <input type="text" class="input" asp-for="Email">
                             </div>
 
                         </div>
-                        @Html.ValidationMessage("Email", "", new { @class = "text-danger validation-summary-errors" })
                     </div>
                     <div>
                         <div class="input-div pass">
@@ -47,24 +49,20 @@
                             </div>
                             <div class="div">
                                 <h5>Password</h5>
-                                @Html.PasswordFor(m => m.Password, new { @class = "input" })
+                                <input type="password" class="input" asp-for="Password">
                             </div>
                         </div>
-                        @Html.ValidationMessage("Password", "", new { @class = "text-danger validation-summary-errors" })
                     </div>
 
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            @*@Html.ValidationSummary("", new { @class = "text-danger validation-summary-errors" })*@
 
-                            <input type="submit" class="btn" value="Login">
+                            <input type="submit" class="btn" value="Log in">
                             @Html.ActionLink("Register", "Register", "Account", new { @class = "btn noHover", style = "text-align:center; padding:10px;" })
                         </div>
                     </div>
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>
+                  
                 </form>
 
 

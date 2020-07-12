@@ -1,5 +1,5 @@
 ﻿
-@model Application.ViewModels.AccountVM.RegisterViewModel
+@model Application.ViewModels.AccountVM.LoginViewModel
 @{
     Layout = null;
 
@@ -11,16 +11,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
     <link href="~/css/style.css" rel="stylesheet" />
-    <title>Document</title>
+    <title>ViewBag.Title</title>
 </head>
 <body>
     <img class="wave" src="~/img/wave2.png">
     <div class="container">
         <div class="img">
-            <img src="~/img/undraw_book_lover_mkck.svg" />
+            <a asp-action="Index" asp-controller="Home">
+
+                <img src="~/img/undraw_book_lover_mkck.svg" />
+            </a>
         </div>
         <div class="login-content">
-            <form id="reg__form" method="post">
+            <form id="reg__form" method="post" asp-controller="Account" asp-action="Register">
                 <img src="~/img/avatar.svg">
                 <h2 class="title">Waiting for you</h2>
                 <div class="input-div one">
@@ -30,9 +33,7 @@
                     <div class="div">
                         <h5>Username</h5>
 
-                        @*<input type="text" class="input" id="username">*@
-                        @Html.TextBoxFor(m => m.UserName, htmlAttributes: new { @class = "input", id = "username" })
-                        @*<input asp-for="Email" class="form-control" />*@
+                        <input asp-for="UserName" class="input" id="username" type="text" />
 
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
@@ -40,16 +41,16 @@
                     </div>
 
                 </div>
-                    @Html.ValidationMessage("UserName", "", new { @class = "text-danger validation-summary-errors" })
+                <span asp-validation-for="UserName" class="text-danger validation-summary-errors"></span>
+
 
                 <div class="input-div one">
                     <div class="i">
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="div">
-                        <h5>Mail</h5>
-                        @*<input type="email" class="input" id="email">*@
-                        @Html.TextBoxFor(m => m.Email, new { @class = "input", id = "email" })
+                        <h5>Email</h5>
+                        <input asp-for="Email" class="input" id="email" type="email">
 
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
@@ -57,7 +58,7 @@
                     </div>
 
                 </div>
-                    @Html.ValidationMessage("Email", "", new { @class = "text-danger validation-summary-errors" })
+                <span asp-validation-for="Email" class="text-danger validation-summary-errors"></span>
 
                 <div class="input-div pass">
                     <div class="i">
@@ -65,8 +66,7 @@
                     </div>
                     <div class="div">
                         <h5>Password</h5>
-                        @*<input type="password" class="input" id="password">*@
-                        @Html.TextBoxFor(m => m.Password, new { @class = "input", id = "password" })
+                        <input asp-for="Password" type="password" class="input" id="password">
 
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
@@ -74,14 +74,14 @@
                     </div>
 
                 </div>
-                    @Html.ValidationMessage("Password", "", new { @class = "text-danger validation-summary-errors" })
+                <span asp-validation-for="Password" class="text-danger validation-summary-errors"></span>
                 <div class="input-div pass">
                     <div class="i">
                         <i class="fas fa-lock"></i>
                     </div>
                     <div class="div">
                         <h5>Password check</h5>
-                        @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "input", id = "password2" })
+                        <input asp-for="ConfirmPassword" type="password" class="input" id="password2">
 
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
@@ -89,7 +89,7 @@
                     </div>
 
                 </div>
-                    @Html.ValidationMessage("ConfirmPassword", "", new { @class = "text-danger validation-summary-errors" })
+                <span asp-validation-for="ConfirmPassword" class="text-danger validation-summary-errors"></span>
                 <input onclick="checkInputs()" type="submit" class="btn" value="Submit">
             </form>
         </div>

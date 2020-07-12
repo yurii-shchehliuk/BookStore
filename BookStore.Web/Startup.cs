@@ -1,13 +1,11 @@
 using Application.ApplicationServices;
 using Application.CommandHandler.GenreCommand;
-using Domain;
 using Domain.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,35 +25,29 @@ namespace BookStore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //MvcOptions.EnableEndpointRouting = false;
 
             services.AddDbContext<Domain.TestAppContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<Domain.TestAppContext>();
-            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddEntityFrameworkStores<Domain.TestAppContext>();
-            //services.AddIdentity<IdentityUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<Domain.TestAppContext>();
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                    .AddEntityFrameworkStores<Domain.TestAppContext>()
+                    .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/LogIn");
+
 
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            //services.AddDbContext<Domain.TestAppContext>(options =>
-            //    options.UseSqlServer(_configurationRoot.GetConnectionString("DefaultConnection")));
 
-
-            //services.AddTransient<ICategoryRepository, CategoryRepository>();
-            //services.AddTransient<IDrinkRepository, DrinkRepository>();
-
-            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            //services.AddScoped<IUser, Application.CommandHandler.UserCommand.UserRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IGenre, GenreRepository>();
             services.AddScoped<IBook, Application.CommandHandler.BookCommand.BookRepository>();
-
-
+            services.AddScoped<IOrder, Application.CommandHandler.OrderCommand.OrderRepository>();
             services.AddScoped(sp => ShoppingCart.GetCart(sp));
+
+
             services.AddMvc();
             services.AddMemoryCache();
 
@@ -90,14 +82,12 @@ namespace BookStore
 
             // IMPORTANT: This session call MUST go before UseMvc()
             app.UseSession();
-
             // Add MVC to the request pipeline.
 
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            //app.UseMvcWithDefaultRoute();
-            //app.UseHttpsRedirection();
+         
             app.UseStaticFiles();
 
             app.UseRouting();

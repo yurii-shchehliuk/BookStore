@@ -1,20 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 
 namespace Domain.Entities
 {
     public class Order
     {
-
         [BindNever]
         public int OrderId { get; set; }
-
-        public List<OrderDetail> OrderLines { get; set; }
 
         [Required(ErrorMessage = "Please enter your first name")]
         [Display(Name = "First name")]
@@ -68,6 +62,8 @@ namespace Domain.Entities
         public DateTime OrderPlaced { get; set; }
 
         public int UserId { get; set; }
+        public virtual List<CartItem> CartItems { get; set; }
+        public virtual List<OrderDetail> OrderLines { get; set; }
 
     }
 }

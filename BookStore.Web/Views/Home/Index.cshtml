@@ -9,30 +9,23 @@
     <div class="slider container">
         <h1 class="col-md-8 title">Najlepsze za tydzień!</h1>
         <div class="slider__box">
-            @foreach (var item in Model.FirstSlider)
-
+            @foreach (var book in Model.FirstSlider)
             {
                 <div class="slider__content row d-flex">
                     <div class="slider__left col-md-3">
-                        <a href="#">
-                            <img class="slider__left__img" src="~/img/book2.svg">
+                        <a asp-controller="Book" asp-action="Details" asp-route-bookId="@book.BookId">
+                            <img class="slider__left__img" src="@book.Image">
                         </a>
                     </div>
                     <div class="col-md-1"></div>
                     <div class="slider__right col-md-8">
-                        <h4 class="">Autor: <strong>Nazwa</strong></h4>
+                        <h4 class=""><strong>@book.Title</strong></h4>
                         <p class="slider__right-text pText">
-                            Jakiś tam opis. Jakaś tam promocja. Przykładowa książka.
-                            Nasze promocje są najlepsze. I td. The first 34 issues include
-                            some classic skull and grave covers, witches, the undead and
-                            other horror comic mainstays of the era.
-                            These seldom turn up in better condition than VG. The
-                            comics with black covers are especially tough to find in
-                            nice shape.
+                            @book.Description
                         </p>
-                        <form action="#" class="">
-                            <button class="slider__button-cart mainBtn ">Do koszyka <i class="fas fa-cart-arrow-down"></i></button>
-                        </form>
+                        <a class="btn btn-success slider__button-cart mainBtn" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-bookId="@book.BookId">
+                            Add to cart
+                        </a>
                     </div>
                 </div>
             }
@@ -45,15 +38,22 @@
         <h1 class="title" id="nowosciScroll">NOWOŚCI!</h1>
         <h2 class="sub-title"> WYBIERZ COŚ DLA SIEBIE </h2>
         <div class="second-slider">
-            @foreach (var item in Model.FirstSlider)
+          
+            @foreach (var book in Model.NewBooks)
             {
                 <div class="second-slider__box">
                     <div class="second-slider__content">
-                        <a href="#" class="second-slider__link"><img class="second-slider__img" src="~/img/slider2/book3.svg" alt="boock"> </a>
-                        <h4 class="">Autor: <strong>Nazwa</strong></h4>
-                        <form action="#" class="">
-                            <button class=" mainBtn ">Do koszyka  <i class="fas fa-cart-arrow-down"></i></button>
-                        </form>
+                        <a asp-controller="Book" asp-action="Details" asp-route-bookId="@book.BookId" class="second-slider__link">
+                            <img class="second-slider__img" src="@book.Image">
+                        </a>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="slider__right col-md-8">
+                        <h4 class=""><strong>@book.Title</strong></h4>
+                        
+                        <a class="btn btn-success slider__button-cart mainBtn" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-bookId="@book.BookId">
+                            Add to cart
+                        </a>
                     </div>
                 </div>
             }
@@ -97,7 +97,7 @@
         <h1 class="title">NOWOŚCI!</h1>
         <h2 class="sub-title"> WYBIERZ COŚ DLA SIEBIE </h2>
         <div class="second-slider">
-            @foreach (var item in Model.FirstSlider)
+            @foreach (var book in Model.FirstSlider)
             {
                 <div class="second-slider__box">
                     <div class="second-slider__content">

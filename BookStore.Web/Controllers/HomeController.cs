@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BookStore.Models;
 using Application.ViewModels.HomeVM;
-using Domain;
 using Application.ApplicationServices;
 
 namespace BookStore.Controllers
@@ -27,8 +23,18 @@ namespace BookStore.Controllers
         public IActionResult Index()
         {
             HomeIndexVM homeViewModel = new HomeIndexVM();
-            homeViewModel.FirstSlider = _book.GetBooks.Take(3).ToList();
-            homeViewModel.Books = _book.GetBooks.ToList();
+           var temp= _book.GetBooks.ToList();
+            if (temp.Count>5)
+            {
+                homeViewModel.FirstSlider = temp.Take(5).ToList();
+            }
+            else
+            {
+                homeViewModel.FirstSlider = temp.ToList();
+
+            }
+            homeViewModel.NewBooks = _book.GetBooks.Where(c=>c.IsThisNew==true).ToList();
+
             return View(homeViewModel);
         }
         
@@ -46,7 +52,9 @@ namespace BookStore.Controllers
 
         public IActionResult Promotions()
         {
-            return View();
+            HomeIndexVM homeViewModel = new HomeIndexVM();
+            homeViewModel.Promotions = _book.GetBooks.Take(12).ToList();
+            return View(homeViewModel);
         }
         public IActionResult Cart()
         {

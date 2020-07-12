@@ -1,102 +1,100 @@
 ﻿using Application.ViewModels.AccountVM;
-using Domain;
-using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BookStore.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly TestAppContext _context;
-        public static int userId;
-        public AccountController(TestAppContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        /// <summary>
+        /// konstruktor
+        /// </summary>
+        /// <param name="userManager">identyfikacja użytkownika</param>
+        /// <param name="signInManager">logowanie użytkownika</param>
+        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
-            _context = context;
-        }
-        // GET: Users/Register
-        public IActionResult Register()
-        {
-            return View();
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
-        // POST: Users/Register
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        public IActionResult Login(string returnUrl)
+        {
+            return View(new LoginViewModel
+            {
+                ReturnUrl = returnUrl
+            });
+        }
+        /// <summary>
+        /// metoda do logowania
+        /// </summary>
+        /// <param name="loginViewModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel loginViewModel)
+        {
+            if(loginViewModel.Email==null||loginViewModel.Password==null)
+                return View(loginViewModel);
+
+            var user = await _userManager.FindByEmailAsync(loginViewModel.Email);
+
+            if (user != null)
+            {
+                var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
+                if (result.Succeeded)
+                {
+                    if (string.IsNullOrEmpty(loginViewModel.ReturnUrl))
+                        return RedirectToAction("Index", "Home");
+
+                    return Redirect(loginViewModel.ReturnUrl);
+                }
+            }
+
+            ModelState.AddModelError("", "Username/password not found");
+            return View(loginViewModel);
+
+        }
+        /// <summary>
+        /// metoda do rejestracji (method get)
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Register() => View();
+        /// <summary>
+        /// metoda do rejestracji (method post)
+        /// </summary>
+        /// <param name="loginViewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register([Bind("UserName,Email,Password")] User user)
+        public async Task<IActionResult> Register(LoginViewModel loginViewModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Users.Add(user);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Login", "Account");
+                var user = new IdentityUser() { Email = loginViewModel.Email, UserName= loginViewModel.UserName};
+                var result = await _userManager.CreateAsync(user, loginViewModel.Password);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Login", "Account");
+                }
             }
-            return View(user);
+            return View(loginViewModel);
         }
 
-        [AllowAnonymous]
-        public ActionResult Login()
-        {
-            return View();
-        }
+        public ViewResult LoggedIn() => View();
+
+
         [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel model)
+        [Authorize]
+        public async Task<IActionResult> Logout()
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = _context.Users.FirstOrDefault(c => c.Email == model.Email && c.Password == model.Password);
-
-            if (result != null)
-            {
-                userId = result.UserId;
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                return View();
-            }
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
 
 
-        ////
-        //// POST: /Account/Register
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Register(RegisterViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-        //        var result = await UserManager.CreateAsync(user, model.Password);
-        //        if (result.Succeeded)
-        //        {
-        //            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-        //            // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-        //            // Send an email with this link
-        //            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-        //            // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-        //            // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        AddErrors(result);
-        //    }
-
-        //    // If we got this far, something failed, redisplay form
-        //    return View(model);
-        //}
     }
 }

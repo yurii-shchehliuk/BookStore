@@ -1,10 +1,9 @@
 ﻿using Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.ApplicationServices
-{
+{/// <summary>
+/// dependency injection interface
+/// </summary>
     public interface ICart: ICommand
     {
 

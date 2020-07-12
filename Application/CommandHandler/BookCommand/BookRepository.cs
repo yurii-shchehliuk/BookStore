@@ -1,20 +1,27 @@
 ﻿using Application.ApplicationServices;
 using Domain;
 using Domain.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Application.CommandHandler.BookCommand
-{
+{/// <summary>
+/// realizcja interfejsów dla Dependency Injection
+/// </summary>
     public class BookRepository : IBook, ICommandHandler
     {
         private readonly TestAppContext _context;
+        /// <summary>
+        /// konstruktor
+        /// </summary>
+        /// <param name="context"></param>
         public BookRepository(TestAppContext context)
         {
             _context = context;
         }
+        /// <summary>
+        /// realizacja metody GetBooks z interfejsu
+        /// </summary>
         public IEnumerable<Book> GetBooks
         {
             get
@@ -22,7 +29,11 @@ namespace Application.CommandHandler.BookCommand
                 return _context.Books.ToList();
             }
         }
-
+        /// <summary>
+        /// realizacja metody z interfejsu
+        /// </summary>
+        /// <param name="id">identyfikator konkrentnej ksiazki</param>
+        /// <returns></returns>
         public Book GetBookById(int id) { return _context.Books.FirstOrDefault(c => c.BookId ==id); }
     }
 }

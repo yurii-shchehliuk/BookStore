@@ -28,33 +28,29 @@
                     </a>
                 </div>
                 <div class="header__search col-md-7">
-                    <form class="header__form active-pink-3 active-pink-4 mb-4">
-                        <input class="form-control header__search__input" id="hInput" type="text" placeholder="Wyszukaj..." aria-label="Search">
+                    <form class="header__form active-pink-3 active-pink-4 mb-4" asp-controller="Book" asp-action="Search" method="get">
+
+                        <input class="form-control header__search__input" id="hInput" type="text" placeholder="Wyszukaj..." aria-label="Search" name="searchString" value="@ViewData["searchString"]">
                         <button class="header__form__button" type="submit">
                             <img id="loupe" src="~/img/Component 17 – 1.svg">
                         </button>
                     </form>
+                    
                 </div>
 
                 <div class="header__btn col-md-2">
-                    @*<form class="header__form-login" action="login.html" target="_blank">
-                            <button class="header__form-right__btn mainBtn">
-                                <partial name="_LoginPartial" />
-                            </button>
 
-                        </form>*@
-                    <form method="get" class="header__form-login" asp-controller="Account" asp-action="Login" target="_blank">
-                        <button class="header__form-right__btn mainBtn">LogIn</button>
-                    </form>
+                    @await Html.PartialAsync("_LoginPartial")
+
                     <form class="header__form-cart" asp-controller="ShoppingCart" asp-action="Index" target="_blank">
                         <button class="header__form-cart">
                             <div>
                                 <img src="~/img/koszyk2.svg" alt="cart">
-                                @await Component.InvokeAsync("ShoppingCartSummary")
+                               
                             </div>
                         </button>
                         <div class="header__form-cart-increment">
-                            <p>1</p>
+                            @await Component.InvokeAsync("ShoppingCartSummary")
                         </div>
                     </form>
                 </div>
@@ -73,7 +69,9 @@
                 <li class="header__nav__list__item"><a asp-controller="Authors" asp-action="Index">Autory</a></li>
                 <li class="header__nav__list__item"><a href="Rating">Ranking</a></li>
                 @await Component.InvokeAsync("GenresMenu")
-                
+                <li class="header__nav__list__item"><a asp-controller="About" asp-action="Index">About</a></li>
+
+
             </ul>
         </nav>
     </div>

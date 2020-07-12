@@ -86,7 +86,7 @@ header .header__btn .header__form-cart {
 
 header .header__btn .header__form-cart .header__form-cart-increment {
   position: absolute;
-  top: 7px;
+  top: 5px;
   right: 7px;
   font-size: 10px;
   border-radius: 20px;
@@ -151,6 +151,13 @@ header .header__btn .header__form-cart .header__form-cart-increment p {
   margin-right: 0;
   text-align: center;
 }
+
+.slider__left__img{
+    height: 475px;
+    width: 350px;
+}
+
+
 
 .first-section .slider__left__img:focus {
   outline: none;
@@ -1117,8 +1124,14 @@ header .header__btn .header__form-cart .header__form-cart-increment p {
   text-align: center;
 }
 
+
+.promotion__info-block{
+    margin-bottom: 100px;
+}
+
 .promotion-wrapper .promotion__info-block-img img {
-  width: 75%;
+    width: 75%;
+    height: 400px;
 }
 
 .promotion-wrapper .promotion__info-block-header {
@@ -1201,7 +1214,14 @@ h1 {
   font-style: normal;
 }
 .second-slider {
-    width: 95%;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.bookSummary__img {
+    height: 300px;
+    width: 50%;
+    display: block;
     margin: 0 auto;
 }
 /*# sourceMappingURL=main.css.map */

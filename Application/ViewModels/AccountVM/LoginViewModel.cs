@@ -2,9 +2,15 @@
 
 namespace Application.ViewModels.AccountVM
 {
+    /// <summary>
+    /// data transfer object (model DTO) do komunikacji z baza bez nie potrzebnych pól dla klienta
+    /// </summary>
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "Please enter username or email")]
+
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+        [Required(ErrorMessage = "Please enter email")]
         [Display(Name = "Email")]
         [EmailAddress]
         [StringLength(50)]
@@ -18,7 +24,13 @@ namespace Application.ViewModels.AccountVM
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
+
+        public string ReturnUrl { get; set; }
+
     }
 }

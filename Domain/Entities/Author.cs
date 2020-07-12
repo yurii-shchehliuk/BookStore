@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Domain.Entities
-{
+﻿namespace Domain.Entities
+{/// <summary>
+/// autor ksiażki
+/// </summary>
     public class Author
     {
         public int AuthorId { get; set; }

@@ -1,10 +1,11 @@
 ﻿using Domain.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Application.ApplicationServices
 {
+    /// <summary>
+    /// dependency injection interface
+    /// </summary>
     public interface IBook : Domain.ICommand
     {
         IEnumerable<Book> GetBooks { get; }
