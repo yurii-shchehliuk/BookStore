@@ -10,5 +10,6 @@ namespace Application.ApplicationServices
     {
         IEnumerable<Book> GetBooks { get; }
         Book GetBookById(int id);
+        IEnumerable<Book> GetBooksByGenre(int id);
     }
 }

@@ -5,6 +5,8 @@ using Microsoft.Extensions.Logging;
 using BookStore.Models;
 using Application.ViewModels.HomeVM;
 using Application.ApplicationServices;
+using System.Collections.Generic;
+using Domain.Entities;
 
 namespace BookStore.Controllers
 {
@@ -12,19 +14,21 @@ namespace BookStore.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IBook _book;
+        private readonly IGenre _genre;
+        public HomeIndexVM homeViewModel = new HomeIndexVM();
 
-        public HomeController(ILogger<HomeController> logger, IBook book)
+        public HomeController(ILogger<HomeController> logger, IBook book, IGenre genre)
         {
             _logger = logger;
             _book = book;
+            _genre = genre;
+            homeViewModel.Genre = _genre.Genres.ToList();
 
         }
-
         public IActionResult Index()
         {
-            HomeIndexVM homeViewModel = new HomeIndexVM();
-           var temp= _book.GetBooks.ToList();
-            if (temp.Count>5)
+            var temp = _book.GetBooks.ToList();
+            if (temp.Count > 5)
             {
                 homeViewModel.FirstSlider = temp.Take(5).ToList();
             }
@@ -33,11 +37,10 @@ namespace BookStore.Controllers
                 homeViewModel.FirstSlider = temp.ToList();
 
             }
-            homeViewModel.NewBooks = _book.GetBooks.Where(c=>c.IsThisNew==true).ToList();
-
+            homeViewModel.NewBooks = _book.GetBooks.Where(c => c.IsThisNew == true).ToList();
             return View(homeViewModel);
         }
-        
+
         public IActionResult Privacy()
         {
 
@@ -52,13 +55,69 @@ namespace BookStore.Controllers
 
         public IActionResult Promotions()
         {
-            HomeIndexVM homeViewModel = new HomeIndexVM();
             homeViewModel.Promotions = _book.GetBooks.Take(12).ToList();
             return View(homeViewModel);
         }
         public IActionResult Cart()
         {
             return View();
+        }
+        public ViewResult List(int genreId)
+        {
+            List<string> _genres = new List<string>(); ;
+            IEnumerable<Book> books;
+            string currentGanre = string.Empty;
+
+
+            var genre = _genre.GenreByCategory(genreId); ;
+            if (genreId != 0)
+            {
+                books = _book.GetBooksByGenre(genre.GenreId).OrderBy(p => p.Title).ToList();
+            }
+            else
+            {
+                books = _book.GetBooks.ToList();
+            }
+
+            currentGanre = genre.GenreName;
+
+            return View(new HomeIndexVM
+            {
+                Books = books,
+                CurrentGanre = currentGanre
+            });
+        }
+        /// <summary>
+        /// metoda do wyszukiwania
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <returns></returns>
+        public ViewResult Search(string searchString)
+        {
+            string _searchString = searchString;
+            IEnumerable<Book> books;
+            string currentCategory = string.Empty;
+
+            if (string.IsNullOrEmpty(_searchString))
+            {
+                books = _book.GetBooks.OrderBy(p => p.BookId).ToList(); ;
+            }
+            else
+            {
+                books = _book.GetBooks.Where(p => p.Title.ToLower().Contains(_searchString.ToLower())).ToList();
+            }
+
+            return View("~/Views/Book/List.cshtml", new HomeIndexVM { Books = books, CurrentGanre = "All books" });
+        }
+
+        public ViewResult Details(int bookId)
+        {
+            var book = _book.GetBooks.FirstOrDefault(d => d.BookId == bookId);
+            if (book == null)
+            {
+                return View("~/Views/Shared/Error.cshtml");
+            }
+            return View(book);
         }
     }
 }

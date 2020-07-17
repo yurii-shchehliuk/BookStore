@@ -13,7 +13,7 @@
             {
                 <div class="slider__content row d-flex">
                     <div class="slider__left col-md-3">
-                        <a asp-controller="Book" asp-action="Details" asp-route-bookId="@book.BookId">
+                        <a asp-controller="Home" asp-action="Details" asp-route-bookId="@book.BookId">
                             <img class="slider__left__img" src="@book.Image">
                         </a>
                     </div>
@@ -38,21 +38,21 @@
         <h1 class="title" id="nowosciScroll">NOWOŚCI!</h1>
         <h2 class="sub-title"> WYBIERZ COŚ DLA SIEBIE </h2>
         <div class="second-slider">
-          
+
             @foreach (var book in Model.NewBooks)
             {
                 <div class="second-slider__box">
-                    <div class="second-slider__content">
-                        <a asp-controller="Book" asp-action="Details" asp-route-bookId="@book.BookId" class="second-slider__link">
+                    <div class="second-slider__conte nt">
+                        <a asp-controller="Home" asp-action="Details" asp-route-bookId="@book.BookId" class="second-slider__link">
                             <img class="second-slider__img" src="@book.Image">
                         </a>
                     </div>
                     <div class="col-md-1"></div>
                     <div class="slider__right col-md-8">
                         <h4 class=""><strong>@book.Title</strong></h4>
-                        
-                        <a class="btn btn-success slider__button-cart mainBtn" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-bookId="@book.BookId">
-                            Add to cart
+
+                        <a class="" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-bookId="@book.BookId">
+                            <button class="btn btn-success slider__button-cart mainBtn">Add to cart</button>
                         </a>
                     </div>
                 </div>
@@ -70,6 +70,7 @@
         <h2 class="sub-title">J.K. Rowling o nowej części Harry Pottera</h2>
         <div class="third-content row">
             <figure class="content-left col-md-3">
+
                 <img class="content__img" src="~/img/Rowling.svg" alt="Rowling">
                 <figcaption class="img__caption"><em> J.K. Rowling</em> </figcaption>
             </figure>
@@ -101,11 +102,13 @@
             {
                 <div class="second-slider__box">
                     <div class="second-slider__content">
-                        <a href="#" class="second-slider__link"><img class="second-slider__img" src="img/slider2/book3.svg" alt="boock"> </a>
-                        <h4 class="">Autor: <strong>Nazwa</strong></h4>
-                        <form action="#" class="">
-                            <button class="mainBtn">Do koszyka <i class="fas fa-cart-arrow-down"></i></button>
-                        </form>
+                        <a asp-controller="Home" asp-action="Details" asp-route-bookId="@book.BookId" class="second-slider__link">
+                            <img class="second-slider__img" src="@book.Image" alt="boock">
+                        </a>
+                        <h4 class=""><strong>@book.Title</strong></h4>
+                        <a class="" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-bookId="@book.BookId">
+                            <button class="btn btn-success slider__button-cart mainBtn">Add to cart</button>
+                        </a>
                     </div>
                 </div>
             }

@@ -29,6 +29,14 @@ namespace Application.CommandHandler.BookCommand
                 return _context.Books.ToList();
             }
         }
+
+        public IEnumerable<Book> GetBooksByGenre(int ganreId)
+        {
+            var genre= _context.Genres.FirstOrDefault(c => c.GenreId == ganreId);
+
+            return _context.Books.Where(c => c.Genre == genre);
+        }
+
         /// <summary>
         /// realizacja metody z interfejsu
         /// </summary>

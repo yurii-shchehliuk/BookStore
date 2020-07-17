@@ -11,7 +11,10 @@ namespace Application.ViewModels.HomeVM
         public List<Book> FirstSlider { get; set; }
         public List<Book> Promotions { get; set; }
         public List<Book> NewBooks { get; set; }
+        public IEnumerable<Genre> Genre { get; set; }
 
-        
+        public IEnumerable<Book> Books { get; set; }
+        public string CurrentGanre { get; set; }
+
     }
 }

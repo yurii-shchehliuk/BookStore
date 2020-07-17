@@ -1,0 +1,75 @@
+﻿@model Domain.Entities.BasicData1
+
+<section class="cart__section container">
+    <div class="back-button">
+        <a class="secondary-link" href="#"><span class="secondary-text"> &lt;powrót </span> </a>
+    </div>
+
+    <div class="cart__title">
+        <h1 class="">Twój aktualny koszyk</h1>
+    </div>
+    <form method="post" class="delivery__form d-flex  flex-column" asp-controller="" asp-action="">
+
+        <div class="cart-container col-md-10 mx-auto p-4">
+            <span class="secondary-text">
+                Krok 1
+            </span>
+
+            <div class="cart-delivery__box">
+                <h4>Wybierz sposób dostawy:</h4>
+                <div class="delivery__box">
+                    <input asp-for="DeliveryOption" value="0" type="checkbox" id="post1" />
+                    <label for="post1">
+                        <img src="img/mailsLogo/Poczta-polska_logo.svg" />
+                        <p class="delivery__form-text">Odbiór w punkcie</p>
+                    </label>
+                    <input asp-for="DeliveryOption" value="1" type="checkbox" id="post2" />
+                    <label for="post2">
+                        <img src="img/mailsLogo/Poczta-polska_logo.svg" />
+                        <p class="delivery__form-text">Dostawa do drzwi</p>
+                    </label>
+                    <input asp-for="DeliveryOption" value="2" type="checkbox" id="post3" />
+                    <label for="post3">
+                        <img src="img/mailsLogo/logo-dhl.svg" />
+                        <p class="delivery__form-text">Dostawa do drzwi<br>(międzynarodowa)</p>
+                    </label>
+                </div>
+            </div>
+            <span class="secondary-text">
+                Krok 2
+            </span>
+            <div class="cart-delivery__box">
+                <h4>Dane odbiorcy</h4>
+                <div class="form__box">
+                    <label for="dane1">Imię</label>
+                    <input asp-for="Name" type="text" id="dane1" class="form-control">
+                    <label for="dane2">Nazwisko</label>
+                    <input asp-for="Surname" type="text" id="dane2" class="form-control">
+                    <label for="dane3">Dokument tożsamości</label>
+                    <input asp-for="IdentityDocument" type="text" id="dane3" class="form-control">
+                    <label for="dane4">Nr dokumentu</label>
+                    <input asp-for="NrDocument" type="text" id="dane4" class="form-control">
+
+                </div>
+            </div>
+            <img class="order-img" src="img/orderImg/deliver-img.svg">
+
+        </div>
+
+
+        <div class="row cart__button__box">
+            <div class="col-md-3"></div>
+                <button type="button" class="cart__button orangeBg col-md-4" href="javascript:history.go(-1)">
+                    &lt;&lt;Wróć do koszyka
+                </button>
+            <div class="col-md-1"></div>
+            <button type="submit" class="cart__button col-md-4">
+                Miejsce przesyłki&gt;&gt;
+            </button>
+        </div>
+    </form>
+
+
+
+
+</section>

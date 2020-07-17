@@ -1,0 +1,12 @@
+﻿@model Application.ViewModels.ShoppingCartVM.ShoppingCartVModel
+
+
+@if (Model.ShoppingCart.CartItems.Count > 0)
+{
+
+    <a  asp-controller="ShoppingCart">
+        <p class="text-center"> @Model.ShoppingCart.CartItems.Count</p>
+       
+    </a>
+
+}

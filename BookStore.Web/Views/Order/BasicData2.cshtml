@@ -1,0 +1,42 @@
+﻿@model Domain.Entities.BasicData2
+<section class="cart__section container">
+    <div class="back-button">
+        <a class="secondary-link" href="#"><span class="secondary-text"> &lt;powrót </span> </a>
+    </div>
+
+    <div class="cart__title">
+        <h1 class="">Szczegóły twojego zamówenia</h1>
+    </div>
+    <div class="cart-container col-md-10 mx-auto p-4">
+        <div class="cart-delivery__box">
+            <h4>Wybierz punkt dostawy:</h4>
+            <div class="form__box">
+                <form class="delivery__form d-flex  flex-column" method="post">
+                    <label for="dane1">Kraj</label>
+                    <input type="text" id="dane1">
+                    <label for="dane2">Województwo</label>
+                    <input type="text" id="dane2">
+                    <label for="dane3">Miasto</label>
+                    <input type="text" id="dane3">
+                    <label for="dane4">Wybierz punkt</label>
+                    <input type="text" id="dane4">
+                </form>
+
+            </div>
+        </div>
+        <img class="deliver-address-img" src="img/orderImg/deliver-address.svg">
+    </div>
+
+
+    <div class="row cart__button__box">
+        <div class="col-md-3"></div>
+        <button class="cart__button orangeBg col-md-4">
+            &lt;&lt;Wróć
+        </button>
+        <div class="col-md-1"></div>
+        <button class="cart__button col-md-4">
+            Płatność&gt;&gt;
+        </button>
+    </div>
+
+</section>

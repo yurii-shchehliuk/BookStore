@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="header__search col-md-7">
-                    <form class="header__form active-pink-3 active-pink-4 mb-4" asp-controller="Book" asp-action="Search" method="get">
+                    <form class="header__form active-pink-3 active-pink-4 mb-4" asp-controller="Home" asp-action="Search" method="get">
 
                         <input class="form-control header__search__input" id="hInput" type="text" placeholder="Wyszukaj..." aria-label="Search" name="searchString" value="@ViewData["searchString"]">
                         <button class="header__form__button" type="submit">
@@ -68,7 +68,7 @@
                 <li class="header__nav__list__item"><a asp-controller="Home" asp-action="Promotions">Promocje</a></li>
                 <li class="header__nav__list__item"><a asp-controller="Authors" asp-action="Index">Autory</a></li>
                 <li class="header__nav__list__item"><a href="Rating">Ranking</a></li>
-                @await Component.InvokeAsync("GenresMenu")
+                @await Html.PartialAsync("GenresMenu")
                 <li class="header__nav__list__item"><a asp-controller="About" asp-action="Index">About</a></li>
 
 

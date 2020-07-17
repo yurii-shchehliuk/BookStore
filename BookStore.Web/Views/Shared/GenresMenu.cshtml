@@ -1,0 +1,17 @@
+﻿@model Application.ViewModels.HomeVM.HomeIndexVM
+
+<div class="dropdown">
+    <span class="drop-tittle">Gatunki <i class="fas fa-caret-down"></i></span>
+    <div class="dropdown-content">
+        @foreach (var ganre in Model.Genre)
+        {
+            <p>
+                <a asp-controller="Home" asp-action="List" asp-route-genreId="@ganre.GenreId">@ganre.GenreName</a>
+            </p>
+        }
+        <hr />
+        <p>
+            <a asp-controller="Home" asp-action="Index" asp-route-genreId="0">View all</a>
+        </p>
+    </div>
+</div>

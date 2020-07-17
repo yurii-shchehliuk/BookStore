@@ -11,6 +11,7 @@
         //public int OrderId { get; set; }
         public int BookId { get; set; }
         public virtual Book Book { get; set; }
+        public virtual BasicData1 BasicData { get; set; }
         //public virtual Order Order { get; set; }
     }
 }
