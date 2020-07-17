@@ -14,7 +14,7 @@ namespace Application.ViewModels.HomeVM
         public IEnumerable<Genre> Genre { get; set; }
 
         public IEnumerable<Book> Books { get; set; }
-        public string CurrentGanre { get; set; }
+        public string CurrentGenre { get; set; }
 
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Application.ApplicationServices;
 using Application.ViewModels.BookVM;
-using Application.ViewModels.HomeVM;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,7 +37,7 @@ namespace BookStore.Web.Controllers
             var genre = _genreRepository.GenreByCategory(genreId); ;
             if (genreId != 0)
             {
-                books = _bookRepository.GetBooksByGenre(genre.GenreId).OrderBy(p => p.Title).ToList();
+                books = _bookRepository.GetBooksByGenre(genre.GenreId).OrderBy(p => p.Title);
             }
             else
             {
@@ -47,7 +46,8 @@ namespace BookStore.Web.Controllers
 
             currentGanre = genre.GenreName;
 
-            return View(new HomeIndexVM
+
+            return View(new BookViewModel
             {
                 Books = books,
                 CurrentGanre = currentGanre
@@ -73,7 +73,7 @@ namespace BookStore.Web.Controllers
                 books = _bookRepository.GetBooks.Where(p => p.Title.ToLower().Contains(_searchString.ToLower())).ToList();
             }
 
-            return View("~/Views/Book/List.cshtml", new HomeIndexVM { Books = books, CurrentGanre = "All books" });
+            return View("~/Views/Book/List.cshtml", new BookViewModel { Books = books, CurrentGanre = "All books" });
         }
 
         public ViewResult Details(int bookId)

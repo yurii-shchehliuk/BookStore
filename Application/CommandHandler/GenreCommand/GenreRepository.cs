@@ -25,10 +25,10 @@ namespace Application.CommandHandler.GenreCommand
                 return temp;
             }
         }
-        public Genre GenreByCategory(int ganreId)
+        public Genre GenreByCategory(int genreId)
         {
            
-           return _appDbContext.Genres.FirstOrDefault(c => c.GenreId == ganreId);
+           return _appDbContext.Genres.FirstOrDefault(c => c.GenreId == genreId);
             
         }
     }

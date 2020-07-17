@@ -6,6 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Book\**" />
+    <Content Remove="Views\Book\**" />
+    <EmbeddedResource Remove="Views\Book\**" />
+    <None Remove="Views\Book\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\BookController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Order\Checkout.cshtml" />
   </ItemGroup>
 
@@ -43,7 +54,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\" />
-    <Folder Include="Views\Book\" />
   </ItemGroup>
 
 </Project>

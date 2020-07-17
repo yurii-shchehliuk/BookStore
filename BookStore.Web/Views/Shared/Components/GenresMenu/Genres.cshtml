@@ -1,0 +1,15 @@
+﻿<div class="dropdown">
+    <span class="drop-tittle">Gatunki <i class="fas fa-caret-down"></i></span>
+    <div class="dropdown-content">
+        @foreach (var genre in Model)
+        {
+            <p>
+                <a asp-controller="Home" asp-action="List" asp-route-genreId="@genre.GenreId">@genre.GenreName</a>
+            </p>
+        }
+        <hr />
+        <p>
+            <a asp-controller="Home" asp-action="List" asp-route-genreId="0">View all</a>
+        </p>
+    </div>
+</div>

@@ -1,83 +1,67 @@
 ﻿@model Application.ViewModels.ShoppingCartVM.ShoppingCartVModel
 
-    <section class="cart__section container">
-        <div class="back">
-            <a href="#">&larr;<u>powrót</u></a>
-        </div>
+<section class="cart__section container">
+    <div class="back">
+        <a href="#">&larr;<u>powrót</u></a>
+    </div>
 
-        <div class="cart__title">
-            <h1 class="">Twój aktualny koszyk</h1>
-        </div>
-        <div class="cart__parametrs">
+    <div class="cart__title">
+        <h1 class="">Twój aktualny koszyk</h1>
+    </div>
+    <div class="cart__parametrs">
 
-            <h2>Ilość</h2>
-            <h2>Cena</h2>
-        </div>
-        @foreach (var line in Model.ShoppingCart.CartItems)
-        {
-            <div class="cart__wrapper">
-                <div class="cart__left">
-                    <img class="cart-img" src="@line.Book.Image" alt="book">
-                </div>
-                <div class="cart__lable">
-                    <h2 class="sub-title">@line.Book.Title</h2>
-
-                </div>
-                <div class="cart__number">
-                    <h2 class="sub-title">@line.Amount</h2>
-                    @*<a class="secondary-link" href="#"><span class="secondary-text"> zmień </span> </a>*@
-                </div>
-                <div class="cart__cost">
-                    <h2 class="sub-title">@(line.Amount * line.Book.Price)<span>zł</span> </h2>
-                </div>
-                <div class="cart__trash">
-                    <a class="cart__trash-link"asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-bookId="@line.Book.BookId"> <i class="fas fa-trash-alt"></i></a>
-                    <a class="glyphicon glyphicon-remove text-danger remove" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-bookId="@line.Book.BookId">
-                        <span class="secondary-text"> usuń </span>
-                    </a>
-                </div>
+        <h2>Ilość</h2>
+        <h2>Cena</h2>
+    </div>
+    @foreach (var line in Model.ShoppingCart.CartItems)
+    {
+        <div class="cart__wrapper">
+            <div class="cart__left">
+                <img class="cart-img" src="@line.Book.Image" alt="book">
             </div>
-        }
+            <div class="cart__lable">
+                <h2 class="sub-title">@line.Book.Title</h2>
 
-        <div class="row ">
-            <div class="col-md-10"></div>
-            <div class="sum col-md-2">
-                <h2 class="sum-text sub-title ">
-                    Razem
-                </h2>
-
-                <h2 class="sum-num ">@Model.ShoppingCartTotal <span>zł</span> </h2>
             </div>
-        </div>
-        <div class="row cart__button__box">
-            <div class="col-md-3"></div>
-            <form method="post" asp-controller="Home" asp-action="List">
-                <button class="cart__button orangeBg col-md-4">
-                    Kontynuuj zakupy
-                </button>
-            </form>
-            <div class="col-md-1"></div>
-            <form action="/" method="post">
-                <button class="cart__button col-md-4">
-                    Przejdż do zamówienia
-                </button>
-            </form>
-        </div>
-        <div class="text-right">
-            <div class="btn-group ">
-                <a class="btn btn-success" asp-controller="Order" asp-action="BasicData1">Check out</a>
-                <a class="btn-group">
-                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        Add more books<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        @foreach (var ganre in Model.Genre)
-                        {
-
-                        <li><a asp-controller="Home" asp-action="List" asp-route-category="@ganre.GenreId">@ganre.GenreName</a></li>
-                        }
-                    </ul>
+            <div class="cart__number">
+                <h2 class="sub-title">@line.Amount</h2>
+                @*<a class="secondary-link" href="#"><span class="secondary-text"> zmień </span> </a>*@
+            </div>
+            <div class="cart__cost">
+                <h2 class="sub-title">@(line.Amount * line.Book.Price)<span>zł</span> </h2>
+            </div>
+            <div class="cart__trash">
+                <a class="cart__trash-link" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-bookId="@line.Book.BookId"> <i class="fas fa-trash-alt"></i></a>
+                <a class="glyphicon glyphicon-remove text-danger remove" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-bookId="@line.Book.BookId">
+                    <span class="secondary-text"> usuń </span>
                 </a>
             </div>
         </div>
-    </section>
+    }
+
+    <div class="row ">
+        <div class="col-md-10"></div>
+        <div class="sum col-md-2">
+            <h2 class="sum-text sub-title ">
+                Razem
+            </h2>
+
+            <h2 class="sum-num ">@Model.ShoppingCartTotal <span>zł</span> </h2>
+        </div>
+    </div>
+    <div class="row cart__button__box">
+        <div class="col-md-3"></div>
+        <form method="post" asp-controller="Home" asp-action="List">
+            <button class="cart__button orangeBg col-md-4">
+                Kontynuuj zakupy
+            </button>
+        </form>
+        <div class="col-md-1"></div>
+        <form asp-controller="Order" asp-action="BasicData1" method="post">
+            <button class="cart__button col-md-4">
+                Przejdż do zamówienia
+            </button>
+        </form>
+    </div>
+
+</section>

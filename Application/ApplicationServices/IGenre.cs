@@ -8,7 +8,7 @@ namespace Application.ApplicationServices
     public interface IGenre : Domain.ICommand
     {
         IEnumerable<Genre> Genres { get; }
-        Genre GenreByCategory(int ganreId);
+        Genre GenreByCategory(int genreId);
 
     }
 }

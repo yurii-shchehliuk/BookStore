@@ -15,18 +15,18 @@ namespace BookStore.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IBook _book;
         private readonly IGenre _genre;
-        public HomeIndexVM homeViewModel = new HomeIndexVM();
+        public HomeIndexVM homeViewModel;
 
         public HomeController(ILogger<HomeController> logger, IBook book, IGenre genre)
         {
             _logger = logger;
             _book = book;
             _genre = genre;
-            homeViewModel.Genre = _genre.Genres.ToList();
 
         }
         public IActionResult Index()
         {
+            homeViewModel = new HomeIndexVM();
             var temp = _book.GetBooks.ToList();
             if (temp.Count > 5)
             {
@@ -55,6 +55,8 @@ namespace BookStore.Controllers
 
         public IActionResult Promotions()
         {
+            homeViewModel = new HomeIndexVM();
+
             homeViewModel.Promotions = _book.GetBooks.Take(12).ToList();
             return View(homeViewModel);
         }
@@ -66,25 +68,25 @@ namespace BookStore.Controllers
         {
             List<string> _genres = new List<string>(); ;
             IEnumerable<Book> books;
-            string currentGanre = string.Empty;
+            string currentGenre = string.Empty;
 
 
             var genre = _genre.GenreByCategory(genreId); ;
             if (genreId != 0)
             {
                 books = _book.GetBooksByGenre(genre.GenreId).OrderBy(p => p.Title).ToList();
+            currentGenre = genre.GenreName;
             }
             else
             {
                 books = _book.GetBooks.ToList();
+            currentGenre = "All books";
             }
-
-            currentGanre = genre.GenreName;
 
             return View(new HomeIndexVM
             {
                 Books = books,
-                CurrentGanre = currentGanre
+                CurrentGenre = currentGenre
             });
         }
         /// <summary>
@@ -107,7 +109,7 @@ namespace BookStore.Controllers
                 books = _book.GetBooks.Where(p => p.Title.ToLower().Contains(_searchString.ToLower())).ToList();
             }
 
-            return View("~/Views/Book/List.cshtml", new HomeIndexVM { Books = books, CurrentGanre = "All books" });
+            return View("~/Views/Book/List.cshtml", new HomeIndexVM { Books = books, CurrentGenre = "All books" });
         }
 
         public ViewResult Details(int bookId)

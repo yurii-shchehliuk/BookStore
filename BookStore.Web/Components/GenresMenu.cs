@@ -25,7 +25,7 @@ namespace BookStore.Web.Components
 
         public IViewComponentResult Invoke()
         {
-            var genre = _genreRepos.Genres.OrderBy(p => p.GenreName);
+            var genre = _genreRepos.Genres.OrderBy(p => p.GenreName).ToList();
             return View("Genres", genre);
         }
     }

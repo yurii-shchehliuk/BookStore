@@ -30,9 +30,9 @@ namespace Application.CommandHandler.BookCommand
             }
         }
 
-        public IEnumerable<Book> GetBooksByGenre(int ganreId)
+        public IEnumerable<Book> GetBooksByGenre(int genreId)
         {
-            var genre= _context.Genres.FirstOrDefault(c => c.GenreId == ganreId);
+            var genre= _context.Genres.FirstOrDefault(c => c.GenreId == genreId);
 
             return _context.Books.Where(c => c.Genre == genre);
         }
