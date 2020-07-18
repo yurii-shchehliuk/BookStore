@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using System.Collections.Generic;
+
+namespace Domain.Entities
 {
     /// <summary>
     /// Representuje ksiażkę pod bazą
@@ -16,8 +18,9 @@
         public bool IsThisNew { get; set; }
 
         public virtual Author Author { get; set; }
-        public virtual CartItem CartItem { get; set; }
         public virtual Genre Genre { get; set; }
+        public virtual CartItem CartItem { get; set; }
+        //public virtual ICollection<BookCart> BookCarts { get; set; }
 
     }
 }

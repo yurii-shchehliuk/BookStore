@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DbInitializer.cs" />
     <Compile Remove="Entities\BookGenre.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClassDiagram1.cd" />
   </ItemGroup>
 
   <ItemGroup>

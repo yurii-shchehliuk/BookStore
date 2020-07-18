@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using System.Collections.Generic;
+
+namespace Domain.Entities
 {/// <summary>
 /// Single cart item
 /// </summary>
@@ -10,8 +12,10 @@
         public string ShoppingCartId { get; set; }
         //public int OrderId { get; set; }
         public int BookId { get; set; }
-        public virtual Book Book { get; set; }
         public virtual BasicData1 BasicData { get; set; }
+        public virtual Book Book { get; set; }
+        //public virtual ICollection<BookCart> BookCarts { get; set; }
+
         //public virtual Order Order { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace BookStore.Web.Components
             {
                 ShoppingCart = _shoppingCart,
                 ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal(),
-                Genre = _genre.Genres.ToList()
+                //Genre = _genre.Genres.ToList()
 
             };
             return View("Default", shoppingCartViewModel);
