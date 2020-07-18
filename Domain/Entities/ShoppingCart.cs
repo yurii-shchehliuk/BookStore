@@ -50,14 +50,14 @@ namespace Domain.Entities
                     Book = book,
                     ShoppingCartId = ShoppingCartId,
                     BookId = book.BookId,
-                    Amount = 1
+                    Quantity = 1
                 };
 
                 _context.CartItems.Add(shoppingCartItem);
             }
             else
             {
-                shoppingCartItem.Amount++;
+                shoppingCartItem.Quantity++;
             }
             _context.SaveChanges();
         }
@@ -72,10 +72,10 @@ namespace Domain.Entities
 
             if (shoppingCartItem != null)
             {
-                if (shoppingCartItem.Amount > 1)
+                if (shoppingCartItem.Quantity > 1)
                 {
-                    shoppingCartItem.Amount--;
-                    localAmount = shoppingCartItem.Amount;
+                    shoppingCartItem.Quantity--;
+                    localAmount = shoppingCartItem.Quantity;
                 }
                 else
                 {
@@ -111,7 +111,7 @@ namespace Domain.Entities
         public decimal GetShoppingCartTotal()
         {
             var total = _context.CartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
-                .Select(c => c.Book.Price * c.Amount).Sum();
+                .Select(c => c.Book.Price * c.Quantity).Sum();
             return (decimal)total;
         }
 

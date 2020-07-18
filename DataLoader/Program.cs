@@ -28,6 +28,8 @@ namespace DataLoader
                     float price = random.Next(10, 70);
                     int discount = random.Next(10, 50);
                     int quantity = random.Next(30, 100);
+                    int isNew = random.Next(0, 2);
+                    bool isnew = Convert.ToBoolean(isNew);
                     Book book = new Book
                     {
                         //BookId = i,
@@ -41,7 +43,9 @@ namespace DataLoader
                         Price = price,
                         Discount = discount,
                         Quantity = quantity,
-                        PriceAfterDiscount = (price - (price * discount) / 100)
+                        PriceAfterDiscount = (price - (price * discount) / 100),
+                        IsThisNew = isnew
+
 
                     };
                     context.Books.Add(book);

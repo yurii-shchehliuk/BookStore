@@ -1,5 +1,8 @@
 ﻿@model Application.ViewModels.ShoppingCartVM.ShoppingCartVModel
-
+@using BookStore.Web.Models
+@{ 
+//var cart = SessionHelper.GetFromJson<List<Item>>(HttpContext.Session,"cart");
+}
 <section class="cart__section container">
     <div class="back">
         <a href="#">&larr;<u>powrót</u></a>
@@ -24,11 +27,11 @@
 
             </div>
             <div class="cart__number">
-                <h2 class="sub-title">@line.Amount</h2>
+                <h2 class="sub-title">@line.Quantity</h2>
                 @*<a class="secondary-link" href="#"><span class="secondary-text"> zmień </span> </a>*@
             </div>
             <div class="cart__cost">
-                <h2 class="sub-title">@(line.Amount * line.Book.Price)<span>zł</span> </h2>
+                <h2 class="sub-title">@(line.Quantity * line.Book.Price)<span>zł</span> </h2>
             </div>
             <div class="cart__trash">
                 <a class="cart__trash-link" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-bookId="@line.Book.BookId"> <i class="fas fa-trash-alt"></i></a>

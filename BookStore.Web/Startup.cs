@@ -22,7 +22,7 @@ namespace BookStore
 
         public IConfiguration Configuration { get; }
         private IConfigurationRoot _configurationRoot;
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -39,9 +39,9 @@ namespace BookStore
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddHttpContextAccessor();
 
-
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IGenre, GenreRepository>();
             services.AddScoped<IBook, Application.CommandHandler.BookCommand.BookRepository>();
             services.AddScoped<IOrder, Application.CommandHandler.OrderCommand.OrderRepository>();
@@ -51,10 +51,10 @@ namespace BookStore
             services.AddMvc();
             services.AddMemoryCache();
 
-            services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
+            services.AddDistributedMemoryCache(); /// Adds a default in-memory implementation of IDistributedCache
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                /// This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
@@ -65,7 +65,7 @@ namespace BookStore
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -76,13 +76,13 @@ namespace BookStore
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                /// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
-            // IMPORTANT: This session call MUST go before UseMvc()
+            /// IMPORTANT: This session call MUST go before UseMvc()
             app.UseSession();
-            // Add MVC to the request pipeline.
+            /// Add MVC to the request pipeline.
 
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
@@ -91,7 +91,6 @@ namespace BookStore
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
 

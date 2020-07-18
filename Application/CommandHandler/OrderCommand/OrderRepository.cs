@@ -37,7 +37,7 @@ namespace Application.CommandHandler.OrderCommand
             {
                 var orderDetail = new OrderDetail()
                 {
-                    Amount = shoppingCartItem.Amount,
+                    Amount = shoppingCartItem.Quantity,
                     BookId = shoppingCartItem.Book.BookId,
                     //OrderId = order.OrderId,
                     Price = shoppingCartItem.Book.Price

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
 {
@@ -7,6 +8,7 @@ namespace Domain.Entities
     /// </summary>
     public class Book
     {
+        [Key]
         public int BookId { get; set; }
         public string Title { get; set; }
         public float Price { get; set; }
