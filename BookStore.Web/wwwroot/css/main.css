@@ -1259,7 +1259,9 @@ h1 {
     .drop-tittle:hover {
         color: orange;
     }
-
+.delivery__box {
+    display: flex;
+}
 /*# sourceMappingURL=main.css.map */
 
 

@@ -80,6 +80,16 @@ namespace BookStore.Controllers
                 {
                     return RedirectToAction("Login", "Account");
                 }
+                else
+                {
+                    var errors = result.Errors;
+                    string message = "";
+                    foreach (var item in errors)
+                    {
+                        message = message + ";\n " + item.Description;
+                    }
+                    ModelState.AddModelError("", message);
+                }
             }
             return View(loginViewModel);
         }

@@ -47,16 +47,25 @@ namespace BookStore.Web.Controllers
             return View(order);
         }
 
-        public IActionResult CheckoutComplete()
+        public IActionResult CheckoutComplete(BasicData2 data2)
         {
+            _orderRepository.InsertData2(data2);
             ViewBag.CheckoutCompleteMessage = "Thanks for your order! :) ";
             return View();
         }
         public IActionResult BasicData1()
         {
             return View();
-        } public IActionResult BasicData2()
+        }
+        public IActionResult BasicData2(BasicData1 data1)
         {
+            var items = _shoppingCart.GetShoppingCartItems();
+            if (items.Count == 0)
+            {
+                ModelState.AddModelError("", "Your cart is empty, add some items first");
+                return RedirectToAction("Index", "Home");
+            }
+            _orderRepository.InsertData1(data1);
             return View();
         }
     }
