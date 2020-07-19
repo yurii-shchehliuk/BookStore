@@ -17,6 +17,7 @@ namespace Domain.Entities
         
         public int CartItemId{ get; set; }
         public virtual CartItem CartItem { get; set; }
+        public virtual BasicData2 BasicData2 { get; set; }
 
     }
     public enum DeliveryOptions

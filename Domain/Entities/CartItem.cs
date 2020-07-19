@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Domain.Entities
 {/// <summary>
@@ -8,14 +9,13 @@ namespace Domain.Entities
     {
         public int CartItemId { get; set; }
         public float Discount { get; set; }
-        public string ShoppingCartId { get; set; }
-        //public Nullable<int> OrderId { get; set; }
         public int Quantity{ get; set; }
+
+        public string ShoppingCartId { get; set; }
+        public Nullable<int> OrderId { get; set; }
         public int BookId { get; set; }
         public virtual BasicData1 BasicData { get; set; }
         public virtual Book Book { get; set; }
-        //public virtual ICollection<BookCart> BookCarts { get; set; }
-
-        //public virtual Order Order { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

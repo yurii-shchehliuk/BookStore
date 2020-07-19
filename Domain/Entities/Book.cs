@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
@@ -21,9 +22,11 @@ namespace Domain.Entities
         public int InStock { get; set; }
 
 
+        public Nullable<int> AuthorId { get; set; }
+        public Nullable<int> GenreId { get; set; }
         public virtual Author Author { get; set; }
         public virtual Genre Genre { get; set; }
-        public virtual CartItem CartItem { get; set; }
+        public virtual ICollection<CartItem> CartItem { get; set; }
 
     }
 }
