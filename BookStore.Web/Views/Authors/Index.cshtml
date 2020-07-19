@@ -1,9 +1,10 @@
-﻿@{
+﻿@model Domain.Entities.Author
+@{
     ViewBag.Title = "Authors";
 }
 @*@section Styles {
-    <link href="@Url.Content("~/css/main.css")" rel="stylesheet" type="text/css" />
-}*@
+        <link href="@Url.Content("~/css/main.css")" rel="stylesheet" type="text/css" />
+    }*@
 <section class="opinion-wrapper">
     <div class="container">
         <div class="opinion-wrapper__header">
@@ -33,17 +34,21 @@
             Zobacz, z kim już współpracujemy!
         </div>
         <div class="authors__info row">
-            <div class="authors__info-block col-md-4">
+
+            @*<div class="authors__info-block col-md-4">
                 <div class="authors__info-block-img">
-                    <img src="~/img/authors/dontsova.png" alt="Darya Dontsova">
+                    <img src="@Model.Image" alt="Darya Dontsova">
                 </div>
                 <div class="authors__info-block-header">
-                    Darya Dontsova
+                    @Model.Name
                 </div>
-                <button class="authors__info-block-button" onclick="window.location.href='#'">
-                    Poznaj autora
-                </button>
-            </div>
+                <form asp-controller="Authors" asp-action="Info" asp-route-authorId="@Model.AuthorId" method="get">
+                    <button class="authors__info-block-button" >
+                        Poznaj autora
+                    </button>
+                </form>
+            </div>*@
+
             <div class="authors__info-block col-md-4">
                 <div class="authors__info-block-img">
                     <img src="~/img/authors/king.png" alt="Steven King">
@@ -171,6 +176,7 @@
                     Poznaj autora
                 </button>
             </div>
+
         </div>
     </div>
 </section>

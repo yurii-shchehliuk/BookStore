@@ -52,7 +52,8 @@ namespace Application.CommandHandler.OrderCommand
         public void InsertData1(BasicData1 data1)
         {
             _appDbContext.BasicDatas1.Add(data1);
-            //here is no save method, because it is in next method
+            _appDbContext.SaveChanges();
+
         }
 
         public void InsertData2(BasicData2 data2)

@@ -1,4 +1,5 @@
 ﻿using Application.ApplicationServices;
+using Application.ViewModels.ShoppingCartVM;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -53,8 +54,9 @@ namespace BookStore.Web.Controllers
             ViewBag.CheckoutCompleteMessage = "Thanks for your order! :) ";
             return View();
         }
-        public IActionResult BasicData1()
+        public IActionResult BasicData1(ShoppingCartVModel shoppingCart)
         {
+            
             return View();
         }
         public IActionResult BasicData2(BasicData1 data1)

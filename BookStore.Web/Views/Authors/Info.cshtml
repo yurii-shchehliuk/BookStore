@@ -1,0 +1,47 @@
+﻿@model Domain.Entities.Author
+
+<div class="container marginTop">
+    <div class="row">
+        <div class="card">
+            <div class="text-center view overlay hm-white-slight">
+                <img src="@Model.Image" class="img-fluid" alt="">
+                <a href="#">
+                    <div class="mask waves-effect waves-light"></div>
+                </a>
+            </div>
+            <div class="card-block">
+                <h4 class="card-title">@Model.Name</h4>
+                <p class="card-text">@Model.Bio</p>
+
+
+            </div>
+            <section class="first-section">
+                <div class="slider container">
+                    <h1 class="col-md-8 title">Książki tego autora!</h1>
+                    <div class="slider__box">
+                        @*@foreach (var book in Model.FirstSlider)
+                        {
+                            <div class="slider__content row d-flex">
+                                <div class="slider__left col-md-3">
+                                    <a asp-controller="Home" asp-action="Details" asp-route-bookId="@book.BookId">
+                                        <img class="slider__left__img" src="@book.Image">
+                                    </a>
+                                </div>
+                                <div class="col-md-1"></div>
+                                <div class="slider__right col-md-8">
+                                    <h4 class=""><strong>@book.Title</strong></h4>
+                                    <p class="slider__right-text pText">
+                                        @book.Description
+                                    </p>
+                                    <a class="btn btn-success slider__button-cart mainBtn" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-bookId="@book.BookId">
+                                        Add to cart
+                                    </a>
+                                </div>
+                            </div>
+                        }*@
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
