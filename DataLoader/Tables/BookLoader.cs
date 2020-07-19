@@ -18,7 +18,7 @@ namespace DataLoader.Tables
             context = _context;
             bookCount=_context.Books.Count();
         }
-        public void LoadMethod()
+        public void LoadMethod(int authorsCount)
         {
             Random random = new Random();
             foreach (var item in Directory.GetFiles(@"C:\Users\Jerzy\source\repos\TestApplication\BookStore.Web\wwwroot\img\Books"))
@@ -30,6 +30,7 @@ namespace DataLoader.Tables
                 int quantity = random.Next(30, 100);
                 int isNew = random.Next(0, 2);
                 bool isnew = Convert.ToBoolean(isNew);
+                int authors = random.Next(1, authorsCount-1);
                 Book book = new Book
                 {
                     Image = pathBook,
@@ -44,8 +45,9 @@ namespace DataLoader.Tables
                     Quantity = quantity,
                     PriceAfterDiscount = (price - (price * discount) / 100),
                     IsThisNew = isnew,
-                    InStock=70
-                    
+                    InStock = 70,
+                    AuthorId = authors
+
 
                 };
                 context.Books.Add(book);

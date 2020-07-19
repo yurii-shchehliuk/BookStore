@@ -19,11 +19,11 @@ namespace DataLoader
 
             using (var context = new TestAppContext(optionsBuilder.Options))
             {
-
-
+                AuthorLoader authorLoader = new AuthorLoader(context);
+                authorLoader.LoadMethod();
 
                 BookLoader bookLoader = new BookLoader(context);
-                bookLoader.LoadMethod();
+                bookLoader.LoadMethod(authorLoader.authorsCount);
             }
         }
     }
