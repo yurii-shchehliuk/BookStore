@@ -37,12 +37,21 @@ namespace Domain.Entities
 
         public void AddToCart(Book book, int amount)
         {
+            //if (book.InStock == 0 || amount == 0)
+            //{
+            //    return false;
+            //}
+            var isValidAmount = true;
             var shoppingCartItem =
                     _context.CartItems.SingleOrDefault(
                         s => s.Book.BookId == book.BookId && s.ShoppingCartId == ShoppingCartId);
   
             if (shoppingCartItem == null)
             {
+                if (amount > book.InStock)
+                {
+                    isValidAmount = false;
+                }
                 shoppingCartItem = new CartItem
                 {
                     
@@ -50,14 +59,22 @@ namespace Domain.Entities
                     Book = book,
                     ShoppingCartId = ShoppingCartId,
                     BookId = book.BookId,
-                    Quantity = 1
+                    Quantity = Math.Min(book.InStock, amount)
                 };
 
                 _context.CartItems.Add(shoppingCartItem);
             }
             else
             {
-                shoppingCartItem.Quantity++;
+                if (book.InStock - shoppingCartItem.Quantity - amount >= 0)
+                {
+                    shoppingCartItem.Quantity += amount;
+                }
+                else
+                {
+                    shoppingCartItem.Quantity += (book.InStock - shoppingCartItem.Quantity);
+                    isValidAmount = false;
+                }
             }
             _context.SaveChanges();
         }
@@ -111,7 +128,7 @@ namespace Domain.Entities
         public decimal GetShoppingCartTotal()
         {
             var total = _context.CartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
-                .Select(c => c.Book.Price * c.Quantity).Sum();
+                 .Select(c => c.Book.PriceAfterDiscount * c.Quantity).Sum();
             return (decimal)total;
         }
 

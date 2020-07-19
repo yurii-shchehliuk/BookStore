@@ -18,11 +18,12 @@ namespace Domain.Entities
         public string Description { get; set; }
         public string Image { get; set; }
         public bool IsThisNew { get; set; }
+        public int InStock { get; set; }
+
 
         public virtual Author Author { get; set; }
         public virtual Genre Genre { get; set; }
         public virtual CartItem CartItem { get; set; }
-        //public virtual ICollection<BookCart> BookCarts { get; set; }
 
     }
 }
