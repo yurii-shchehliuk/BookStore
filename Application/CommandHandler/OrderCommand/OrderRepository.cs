@@ -8,7 +8,7 @@ namespace Application.CommandHandler.OrderCommand
     /// <summary>
     /// realizcja interfejsów dla Dependency Injection
     /// </summary>
-    public class OrderRepository : IOrder
+    public class OrderRepository : IOrder,ICommandHandler
     {
         private readonly TestAppContext _appDbContext;
         private readonly ShoppingCart _shoppingCart;
@@ -46,6 +46,18 @@ namespace Application.CommandHandler.OrderCommand
                 _appDbContext.OrderDetails.Add(orderDetail);
             }
 
+            _appDbContext.SaveChanges();
+        }
+
+        public void InsertData1(BasicData1 data1)
+        {
+            _appDbContext.BasicDatas1.Add(data1);
+            //here is no save method, because it is in next method
+        }
+
+        public void InsertData2(BasicData2 data2)
+        {
+            _appDbContext.BasicDatas2.Add(data2);
             _appDbContext.SaveChanges();
         }
     }

@@ -7,5 +7,7 @@ namespace Application.ApplicationServices
     public interface IOrder : Domain.ICommand
     {
         void CreateOrder(Order order);
+        void InsertData1(BasicData1 data1);
+        void InsertData2(BasicData2 data2);
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using System.Collections.Generic;
+
+namespace Domain.Entities
 {/// <summary>
 /// autor ksiażki
 /// </summary>
@@ -8,6 +10,6 @@
         public string Name { get; set; }
         public string Image { get; set; }
         public int BookId { get; set; }
-        public virtual Book Book { get; set; }
+        public virtual List<Book> Book { get; set; }
     }
 }
