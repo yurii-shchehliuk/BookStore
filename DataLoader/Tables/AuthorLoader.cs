@@ -19,7 +19,7 @@ namespace DataLoader.Tables
         }
         public void LoadMethod()
         {
-            foreach (var item in Directory.GetFiles(@"C:\Users\Jerzy\source\repos\TestApplication\BookStore.Web\wwwroot\img\authors"))
+            foreach (var item in Directory.GetFiles(@"C:\Users\Jerzy\source\repos\BookStore\BookStore.Web\wwwroot\img\authors"))
             {
                 authorsCount++; 
                 string pathBook = "/img/authors/" + Path.GetFileName(item);

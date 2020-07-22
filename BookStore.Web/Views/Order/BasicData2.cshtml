@@ -7,20 +7,20 @@
         <div class="cart__title">
             <h1 class="">Szczegóły twojego zamówenia</h1>
         </div>
-        <form action="/" method="post">
+        <form asp-controller="Order" asp-action="CheckoutComplete" method="post">
             <div class="cart-container col-md-10 mx-auto p-4">
                 <div class="cart-delivery__box">
                     <h4>Wybierz punkt dostawy:</h4>
                     <div class="form__box">
                         <div class="delivery__form d-flex  flex-column">
                             <label for="dane1">Kraj</label>
-                            <input type="text" id="dane1" class="form-control">
+                            <input asp-for="Country" type="text" id="dane1" class="form-control">
                             <label for="dane2">Województwo</label>
-                            <input type="text" id="dane2" class="form-control">
+                            <input asp-for="Province" type="text" id="dane2" class="form-control">
                             <label for="dane3">Miasto</label>
-                            <input type="text" id="dane3" class="form-control">
+                            <input asp-for="City" type="text" id="dane3" class="form-control">
                             <label for="dane4">Wybierz punkt</label>
-                            <input type="text" id="dane4" class="form-control">
+                            <input asp-for="DeliveryPoint" type="text" id="dane4" class="form-control">
                         </div>
 
                     </div>
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="col-md-1"></div>
-                <button class="cart__button col-md-4" asp-controller="Order" asp-action="CheckoutComplete">
+                <button class="cart__button col-md-4" type="submit">
                     Potwierdźić&gt;&gt;
                 </button>
             </div>

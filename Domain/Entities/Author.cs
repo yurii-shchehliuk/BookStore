@@ -10,6 +10,6 @@ namespace Domain.Entities
         public string Name { get; set; }
         public string Image { get; set; }
         public string Bio { get; set; }
-        public virtual List<Book> Book { get; set; }
+        public virtual List<Book> Books { get; set; }
     }
 }

@@ -11,19 +11,19 @@ namespace DataLoader.Tables
     public class BookLoader
     {
         private readonly TestAppContext context;
-        public int bookCount = 0;
+        //public int bookCount = 0;
 
         public BookLoader(TestAppContext _context)
         {
             context = _context;
-            bookCount=_context.Books.Count();
+            //bookCount=_context.Books.Count();
         }
         public void LoadMethod(int authorsCount)
         {
             Random random = new Random();
-            foreach (var item in Directory.GetFiles(@"C:\Users\Jerzy\source\repos\TestApplication\BookStore.Web\wwwroot\img\Books"))
+            foreach (var item in Directory.GetFiles(@"C:\Users\Jerzy\source\repos\BookStore\BookStore.Web\wwwroot\img\Books"))
             {
-                bookCount++;
+                //bookCount++;
                 string pathBook = "/img/Books/" + Path.GetFileName(item);
                 float price = random.Next(10, 70);
                 int discount = random.Next(10, 50);

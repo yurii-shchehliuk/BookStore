@@ -8,7 +8,7 @@
         <div class="cart__title">
             <h1 class="">Twój aktualny koszyk</h1>
         </div>
-        <form method="post" class="delivery__form d-flex  flex-column" asp-controller="Order" asp-action="BasicData1">
+        <form method="post" class="delivery__form d-flex  flex-column" asp-controller="Order" asp-action="CheckoutComplete">
             <div class="cart-container col-md-10 mx-auto p-4">
                 <span class="secondary-text">
                     Krok 1
@@ -40,6 +40,7 @@
                 <div class="cart-delivery__box">
                     <h4>Dane odbiorcy</h4>
                     <div class="form__box">
+                        <input asp-for="BasicData1Id" type="hidden" />
                         <label for="dane1">Imię</label>
                         <input asp-for="Name" type="text" id="dane1" class="form-control">
                         <label for="dane2">Nazwisko</label>
@@ -62,7 +63,7 @@
                     &lt;&lt;Wróć do koszyka
                 </button>
                 <div class="col-md-1"></div>
-                <button type="submit" class="cart__button col-md-4" asp-controller="Order" asp-action="BasicData2">
+                <button type="submit" class="cart__button col-md-4">
                     Miejsce przesyłki&gt;&gt;
                 </button>
             </div>

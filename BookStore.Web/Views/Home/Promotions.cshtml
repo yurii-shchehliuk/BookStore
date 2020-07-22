@@ -15,10 +15,10 @@
             {
                 <div class="promotion__info-block col-md-4">
                     <div class="promotion__info-block-img">
-                        <img src="@promoBook.Image" alt="">
+                        <img src="@promoBook.Image" alt="" asp-controller="Home" asp-action="Details" asp-route-bookId="@promoBook.BookId">
                     </div>
-                    <div class="promotion__info-block-header">
-                        Autor. Nazwa Książki @promoBook.Title
+                    <div class="promotion__info-block-header" >
+                        <a asp-controller="Home" asp-action="Details" asp-route-bookId="@promoBook.BookId">Nazwa Książki: @promoBook.Title </a> 
                     </div>
                     <div class="promotion__info-block-price">
                         <div class="promotion__info-block-price-discount row justify-content-end">

@@ -27,7 +27,10 @@ namespace BookStore
         {
 
             services.AddDbContext<Domain.TestAppContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                x => x.MigrationsAssembly("Domain")));
+
+
 
 
             services.AddIdentity<IdentityUser, IdentityRole>()
@@ -87,7 +90,7 @@ namespace BookStore
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
-         
+
             app.UseStaticFiles();
 
             app.UseRouting();

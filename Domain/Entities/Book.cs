@@ -21,7 +21,7 @@ namespace Domain.Entities
         public bool IsThisNew { get; set; }
         public int InStock { get; set; }
 
-
+        //relacje z innymi tabelkami z poziomu kodu
         public Nullable<int> AuthorId { get; set; }
         public Nullable<int> GenreId { get; set; }
         public virtual Author Author { get; set; }

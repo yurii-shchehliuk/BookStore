@@ -14,7 +14,7 @@ namespace Domain.Entities
         public string ShoppingCartId { get; set; }
         public Nullable<int> OrderId { get; set; }
         public int BookId { get; set; }
-        public virtual BasicData1 BasicData { get; set; }
+        public virtual BasicData1 BasicData1 { get; set; }
         public virtual Book Book { get; set; }
         public virtual Order Order { get; set; }
     }

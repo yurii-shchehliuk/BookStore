@@ -47,10 +47,11 @@ namespace BookStore.Web.Controllers
 
             return View(order);
         }
-
-        public IActionResult CheckoutComplete(BasicData2 data2)
+        int basicId;
+        public IActionResult CheckoutComplete(BasicData1 data1)
         {
-            _orderRepository.InsertData2(data2);
+            //data2.BasicData1Id = basicId;
+            _orderRepository.InsertData1(data1);
             ViewBag.CheckoutCompleteMessage = "Thanks for your order! :) ";
             return View();
         }
@@ -61,6 +62,8 @@ namespace BookStore.Web.Controllers
         }
         public IActionResult BasicData2(BasicData1 data1)
         {
+            basicId = data1.BasicData1Id;
+
             var items = _shoppingCart.GetShoppingCartItems();
             if (items.Count == 0)
             {

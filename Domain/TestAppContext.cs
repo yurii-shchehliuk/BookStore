@@ -26,8 +26,22 @@ namespace Domain
         {
             #region relations
             modelBuilder.Entity<User>()
-                    .HasOne(a => a.UserRoles)
-                    .WithOne(b => b.User).HasForeignKey<UserRoles>(c => c.UserId);
+                     .HasOne(a => a.UserRoles)
+                     .WithOne(b => b.User).HasForeignKey<UserRoles>(c => c.UserId);
+            modelBuilder.Entity<Book>()
+                        .HasOne(a => a.Author)
+                        .WithMany(b => b.Books);//.HasForeignKey(c => c.BookId);
+
+
+            modelBuilder.Entity<Genre>()
+                .HasMany(c => c.Books)
+                .WithOne(c => c.Genre);
+            //modelBuilder.Entity<BasicData1>()
+            //    .HasOne(c => c.BasicData2)
+            //    .WithOne(c => c.BasicData1).HasForeignKey<BasicData2>(c => c.BasicData1Id);
+            modelBuilder.Entity<BasicData1>()
+                .HasOne(c => c.CartItem)
+                .WithOne(c => c.BasicData1).HasForeignKey<BasicData1>(c => c.CartItemId);
             //modelBuilder.Entity<Book>()
             //            .HasOne(a => a.Author)
             //            .WithOne(b => b.Book).HasForeignKey<Author>(c => c.BookId);

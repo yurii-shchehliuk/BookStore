@@ -46,6 +46,11 @@ namespace BookStore.Controllers
 
             return View();
         }
+        public IActionResult Rating()
+        {
+
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -75,12 +80,12 @@ namespace BookStore.Controllers
             if (genreId != 0)
             {
                 books = _book.GetBooksByGenre(genre.GenreId).OrderBy(p => p.Title).ToList();
-            currentGenre = genre.GenreName;
+                currentGenre = genre.GenreName;
             }
             else
             {
                 books = _book.GetBooks.ToList();
-            currentGenre = "All books";
+                currentGenre = "All books";
             }
 
             return View(new HomeIndexVM
@@ -109,7 +114,7 @@ namespace BookStore.Controllers
                 books = _book.GetBooks.Where(p => p.Title.ToLower().Contains(_searchString.ToLower())).ToList();
             }
 
-            return View("~/Views/Book/List.cshtml", new HomeIndexVM { Books = books, CurrentGenre = "All books" });
+            return View("~/Views/Home/List.cshtml", new HomeIndexVM { Books = books, CurrentGenre = "All books" });
         }
 
         public ViewResult Details(int bookId)

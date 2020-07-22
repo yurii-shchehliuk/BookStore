@@ -67,7 +67,7 @@
                 <li class="header__nav__list__item"><a href="#nowosciScroll">Nowe</a></li>
                 <li class="header__nav__list__item"><a asp-controller="Home" asp-action="Promotions">Promocje</a></li>
                 <li class="header__nav__list__item"><a asp-controller="Authors" asp-action="Index">Autory</a></li>
-                <li class="header__nav__list__item"><a href="Rating">Ranking</a></li>
+                <li class="header__nav__list__item"><a asp-controller="Home" asp-action="Rating">Ranking</a></li>
                 @await Component.InvokeAsync("GenresMenu")
                 <li class="header__nav__list__item"><a asp-controller="About" asp-action="Index">About</a></li>
 

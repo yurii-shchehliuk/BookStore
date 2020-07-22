@@ -11,7 +11,7 @@ namespace Domain.Entities
         public string Province { get; set; }
         public string City { get; set; }
         public string DeliveryPoint { get; set; }
-        public int BasicData1Id { get; set; }
+        public Nullable<int> BasicData1Id { get; set; }
         public virtual BasicData1 BasicData1 { get; set; }
     }
 }
