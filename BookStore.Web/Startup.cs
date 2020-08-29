@@ -30,9 +30,6 @@ namespace BookStore
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                 x => x.MigrationsAssembly("Domain")));
 
-
-
-
             services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddEntityFrameworkStores<Domain.TestAppContext>()
                     .AddDefaultTokenProviders();
@@ -61,6 +58,7 @@ namespace BookStore
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            //-------
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);

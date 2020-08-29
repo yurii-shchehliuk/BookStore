@@ -1,8 +1,10 @@
 ﻿using Application.ApplicationServices;
 using Domain;
 using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Application.CommandHandler.BookCommand
 {/// <summary>
@@ -29,7 +31,10 @@ namespace Application.CommandHandler.BookCommand
                 return _context.Books.ToList();
             }
         }
-
+        public async Task<IEnumerable<Book>> GetListOfBooks()
+        {
+            return await _context.Books.ToListAsync();
+        }
         public IEnumerable<Book> GetBooksByGenre(int genreId)
         {
             var genre= _context.Genres.FirstOrDefault(c => c.GenreId == genreId);
