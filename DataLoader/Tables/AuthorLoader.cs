@@ -17,9 +17,9 @@ namespace DataLoader.Tables
             context = _context;
             authorsCount = _context.Authors.Count();
         }
-        public void LoadMethod()
+        public void LoadMethod(string authorsPath)
         {
-            foreach (var item in Directory.GetFiles(@"C:\Users\Jerzy\source\repos\BookStore\BookStore.Web\wwwroot\img\authors"))
+            foreach (var item in Directory.GetFiles(authorsPath))
             {
                 authorsCount++; 
                 string pathBook = "/img/authors/" + Path.GetFileName(item);

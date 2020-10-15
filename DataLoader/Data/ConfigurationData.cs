@@ -7,6 +7,7 @@ namespace OPT_Faktury.Data
     {
         public Connection Connection { get; set; }
         public string BooksPath { get; set; }
+        public string AuthorsPath { get; set; }
     }
     public class Connection
     {

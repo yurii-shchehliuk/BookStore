@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<Connection>
-		<ConnectionString>Server=(localdb)\\mssqllocaldb;Database=BookStoreDb;Trusted_Connection=True;MultipleActiveResultSets=true</ConnectionString>
+		<ConnectionString>Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BookStoreDb;Integrated Security=True</ConnectionString>
 	</Connection>
 	<BooksPath>D:\_PROJECTS\BookStore\BookStore.Web\wwwroot\img\Books</BooksPath>
+	<AuthorsPath>D:\_PROJECTS\BookStore\BookStore.Web\wwwroot\img\authors</AuthorsPath>
 </Configuration>

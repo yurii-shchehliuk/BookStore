@@ -25,7 +25,7 @@ namespace DataLoader
             using (var context = new TestAppContext(optionsBuilder.Options))
             {
                 AuthorLoader authorLoader = new AuthorLoader(context);
-               // authorLoader.LoadMethod();
+                authorLoader.LoadMethod(programConfiguration.AuthorsPath);
 
                 BookLoader bookLoader = new BookLoader(context);
                 bookLoader.LoadMethod(authorLoader.authorsCount, programConfiguration.BooksPath);
