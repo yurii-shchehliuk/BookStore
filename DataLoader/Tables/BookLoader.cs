@@ -18,10 +18,10 @@ namespace DataLoader.Tables
             context = _context;
             //bookCount=_context.Books.Count();
         }
-        public void LoadMethod(int authorsCount)
+        public void LoadMethod(int authorsCount, string bookPath)
         {
             Random random = new Random();
-            foreach (var item in Directory.GetFiles(@"C:\Users\Jerzy\source\repos\BookStore\BookStore.Web\wwwroot\img\Books"))
+            foreach (var item in Directory.GetFiles(bookPath))
             {
                 //bookCount++;
                 string pathBook = "/img/Books/" + Path.GetFileName(item);

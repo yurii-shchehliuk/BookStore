@@ -58,7 +58,7 @@ namespace BookStore.Web.Controllers
         public IActionResult BasicData1(ShoppingCartVModel shoppingCart)
         {
             
-            return View();
+            return View(shoppingCart);
         }
         public IActionResult BasicData2(BasicData1 data1)
         {

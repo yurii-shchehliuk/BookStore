@@ -2,6 +2,8 @@
 using Domain;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using OPT_Faktury.Core;
+using OPT_Faktury.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,9 +15,12 @@ namespace DataLoader
         static void Main(string[] args)
         {
 
+            Configuration programConfiguration;
+            programConfiguration = ConfigurationMenager.ReadConfiguration();
 
+          
             var optionsBuilder = new DbContextOptionsBuilder<TestAppContext>();
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=TestApplicationDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+            optionsBuilder.UseSqlServer(programConfiguration.Connection.ConnectionString);
 
             using (var context = new TestAppContext(optionsBuilder.Options))
             {
@@ -23,7 +28,7 @@ namespace DataLoader
                // authorLoader.LoadMethod();
 
                 BookLoader bookLoader = new BookLoader(context);
-                bookLoader.LoadMethod(authorLoader.authorsCount);
+                bookLoader.LoadMethod(authorLoader.authorsCount, programConfiguration.BooksPath);
             }
         }
     }

@@ -37,11 +37,6 @@ namespace Domain.Entities
 
         public void AddToCart(Book book, int amount)
         {
-            //if (book.InStock == 0 || amount == 0)
-            //{
-            //    return false;
-            //}
-            var isValidAmount = true;
             var shoppingCartItem =
                     _context.CartItems.SingleOrDefault(
                         s => s.Book.BookId == book.BookId && s.ShoppingCartId == ShoppingCartId);
@@ -50,7 +45,6 @@ namespace Domain.Entities
             {
                 if (amount > book.InStock)
                 {
-                    isValidAmount = false;
                 }
                 shoppingCartItem = new CartItem
                 {
@@ -73,7 +67,6 @@ namespace Domain.Entities
                 else
                 {
                     shoppingCartItem.Quantity += (book.InStock - shoppingCartItem.Quantity);
-                    isValidAmount = false;
                 }
             }
             _context.SaveChanges();
@@ -107,11 +100,10 @@ namespace Domain.Entities
 
         public List<CartItem> GetShoppingCartItems()
         {
-            return CartItems ??
-                   (CartItems =
+            return CartItems ??=
                        _context.CartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
                            .Include(s => s.Book)
-                           .ToList());
+                           .ToList();
         }
 
         public void ClearCart()

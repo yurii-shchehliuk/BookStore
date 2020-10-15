@@ -2,6 +2,6 @@
 <div class="row marginTop">
     @foreach (var book in Model.Books)
     {
-        @Html.Partial("BooksSummary", book)
+        @Html.PartialAsync("BooksSummary", book)
     }
 </div>
