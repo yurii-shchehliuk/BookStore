@@ -23,7 +23,7 @@
             </a>
         </div>
         <div class="login-content">
-            <form id="reg__form" method="post" asp-controller="Account" asp-action="Register">
+            <form id="reg__form" method="post" asp-controller="Account" asp-action="Register" asp-route-returnUrl="@ViewData["ReturnUrl"]">
                 <img src="~/img/avatar.svg">
                 <h2 class="title">Waiting for you</h2>
                 <div class="input-div one">

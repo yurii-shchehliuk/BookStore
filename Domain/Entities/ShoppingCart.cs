@@ -12,8 +12,8 @@ namespace Domain.Entities
     /// </summary>
     public class ShoppingCart
     {
-        private readonly TestAppContext _context;
-        public ShoppingCart(TestAppContext context)
+        private readonly AppDbContext _context;
+        public ShoppingCart(AppDbContext context)
         {
             _context = context;
         }
@@ -28,7 +28,7 @@ namespace Domain.Entities
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?
                 .HttpContext.Session;
 
-            var context = services.GetService<TestAppContext>();
+            var context = services.GetService<AppDbContext>();
             string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
             session.SetString("CartId", cartId);
 

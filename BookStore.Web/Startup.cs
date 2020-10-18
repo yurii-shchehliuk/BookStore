@@ -26,12 +26,12 @@ namespace BookStore
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<Domain.TestAppContext>(options =>
+            services.AddDbContext<Domain.AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                 x => x.MigrationsAssembly("Domain")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                    .AddEntityFrameworkStores<Domain.TestAppContext>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                    .AddEntityFrameworkStores<Domain.AppDbContext>()
                     .AddDefaultTokenProviders();
 
             services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/LogIn");
@@ -87,10 +87,8 @@ namespace BookStore
 
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
-            app.UseStaticFiles();
 
             app.UseStaticFiles();
-
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

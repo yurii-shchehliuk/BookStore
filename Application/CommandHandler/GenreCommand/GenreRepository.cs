@@ -12,8 +12,8 @@ namespace Application.CommandHandler.GenreCommand
     {/// <summary>
     /// dependency injection field dla bazy danych
     /// </summary>
-        private readonly TestAppContext _appDbContext;
-        public GenreRepository(TestAppContext appDbContext)
+        private readonly AppDbContext _appDbContext;
+        public GenreRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }

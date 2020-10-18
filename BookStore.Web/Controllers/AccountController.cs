@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace BookStore.Controllers
@@ -10,17 +11,20 @@ namespace BookStore.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly ILogger _logger;
         /// <summary>
         /// konstruktor
         /// </summary>
         /// <param name="userManager">identyfikacja użytkownika</param>
         /// <param name="signInManager">logowanie użytkownika</param>
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ILogger<AccountController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _logger = logger;
         }
-
+        [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login(string returnUrl)
         {
             return View(new LoginViewModel
@@ -34,6 +38,7 @@ namespace BookStore.Controllers
         /// <param name="loginViewModel"></param>
         /// <returns></returns>
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
             if(loginViewModel.Email==null||loginViewModel.Password==null)
@@ -61,37 +66,41 @@ namespace BookStore.Controllers
         /// metoda do rejestracji (method get)
         /// </summary>
         /// <returns></returns>
-        public IActionResult Register() => View();
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Register(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
         /// <summary>
         /// metoda do rejestracji (method post)
         /// </summary>
-        /// <param name="loginViewModel"></param>
+        /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(LoginViewModel loginViewModel)
+        public async Task<IActionResult> Register(LoginViewModel model, string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser() { Email = loginViewModel.Email, UserName= loginViewModel.UserName};
-                var result = await _userManager.CreateAsync(user, loginViewModel.Password);
+                var user = new Domain.Entities.ApplicationUser() { Email = model.Email, UserName= model.UserName};
+                var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Login", "Account");
+                    _logger.LogInformation("User created a new account with password.");
+
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation("User created a new account with password.");
+                    return RedirectToLocal(returnUrl);
                 }
-                else
-                {
-                    var errors = result.Errors;
-                    string message = "";
-                    foreach (var item in errors)
-                    {
-                        message = message + ";\n " + item.Description;
-                    }
-                    ModelState.AddModelError("", message);
-                }
+                AddErrors(result);
+               
             }
-            return View(loginViewModel);
+            return View(model);
         }
 
         public ViewResult LoggedIn() => View();
@@ -104,7 +113,29 @@ namespace BookStore.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+        #region Helpers
 
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+        }
+
+        private IActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+        }
+
+        #endregion
 
     }
 }

@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain
 {
-    public class TestAppContext : IdentityDbContext<IdentityUser>
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
-        public TestAppContext(DbContextOptions<TestAppContext> options)
+        public AppDbContext(DbContextOptions<AppDbContext> options)
            : base(options)
         {
 
@@ -16,8 +16,7 @@ namespace Domain
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Genre> Genres { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
-        //public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<UserRoles> UsersRoles { get; set; }
+        //public virtual DbSet<UserRoles> UsersRoles { get; set; }
         public virtual DbSet<CartItem> CartItems { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<BasicData1> BasicDatas1 { get; set; }
@@ -25,9 +24,7 @@ namespace Domain
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region relations
-            modelBuilder.Entity<User>()
-                     .HasOne(a => a.UserRoles)
-                     .WithOne(b => b.User).HasForeignKey<UserRoles>(c => c.UserId);
+           
             modelBuilder.Entity<Book>()
                         .HasOne(a => a.Author)
                         .WithMany(b => b.Books);//.HasForeignKey(c => c.BookId);

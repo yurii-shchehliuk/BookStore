@@ -12,12 +12,12 @@ namespace Application.CommandHandler.BookCommand
 /// </summary>
     public class BookRepository : IBook, ICommandHandler
     {
-        private readonly TestAppContext _context;
+        private readonly AppDbContext _context;
         /// <summary>
         /// konstruktor
         /// </summary>
         /// <param name="context"></param>
-        public BookRepository(TestAppContext context)
+        public BookRepository(AppDbContext context)
         {
             _context = context;
         }

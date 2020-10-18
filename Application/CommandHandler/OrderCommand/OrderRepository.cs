@@ -10,7 +10,7 @@ namespace Application.CommandHandler.OrderCommand
     /// </summary>
     public class OrderRepository : IOrder,ICommandHandler
     {
-        private readonly TestAppContext _appDbContext;
+        private readonly AppDbContext _appDbContext;
         private readonly ShoppingCart _shoppingCart;
 
         /// <summary>
@@ -18,7 +18,7 @@ namespace Application.CommandHandler.OrderCommand
         /// </summary>
         /// <param name="appDbContext">relacja (podlaczenie) do bazy danych</param>
         /// <param name="shoppingCart">relacja do koszyka klienta</param>
-        public OrderRepository(TestAppContext appDbContext, ShoppingCart shoppingCart)
+        public OrderRepository(AppDbContext appDbContext, ShoppingCart shoppingCart)
         {
             _appDbContext = appDbContext;
             _shoppingCart = shoppingCart;

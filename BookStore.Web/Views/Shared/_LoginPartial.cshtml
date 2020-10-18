@@ -6,14 +6,14 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-<form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm" method="post" class="header__form-login">
-       <button class="header__form-right__btn mainBtn" href="javascript:document.getElementById('logoutForm').submit()">Log off</button>
-</form> }
+    <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm" method="post" class="header__form-login">
+        <button class="header__form-right__btn mainBtn" href="javascript:document.getElementById('logoutForm').submit()">Log off</button>
+    </form> }
 else
 {
-<form asp-area="" asp-controller="Account" asp-action="Login" method="get">
+    <form asp-area="" asp-controller="Account" asp-action="Login" method="get">
 
-    <button class="header__form-right__btn mainBtn" id="loginLink" asp-controller="Account" asp-action="Login"> Log in </button>
-</form>}
+        <button class="header__form-right__btn mainBtn" id="loginLink" asp-controller="Account" asp-action="Login"> Log in </button>
+    </form>}
 
 

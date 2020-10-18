@@ -4,8 +4,8 @@ namespace Application.CommandHandler.ShoppingCartCommand
 {
     public class ShoppingCartRepository
     {
-        private readonly TestAppContext _context;
-        public ShoppingCartRepository(TestAppContext contextT)
+        private readonly AppDbContext _context;
+        public ShoppingCartRepository(AppDbContext contextT)
         {
             _context = contextT;
         }
